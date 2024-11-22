@@ -1,10 +1,11 @@
+import { Db } from "./instance";
 import { createRepository } from "./repository";
 
-export function createService(db: any) {
+export function createService(db: Db) {
   const repository = createRepository(db);
 
   return {
-    async getAll() {
+    getAll: async () => {
       return repository.getAll();
     },
   };

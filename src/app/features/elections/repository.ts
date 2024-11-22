@@ -1,6 +1,8 @@
-export function createRepository(db: any) {
+import { Db } from "./instance";
+
+export function createRepository(db: Db) {
   return {
-    getAll() {
+    getAll: () => {
       return db;
     },
   };
