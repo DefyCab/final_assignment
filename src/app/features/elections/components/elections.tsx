@@ -1,4 +1,10 @@
-export function Elections() {
+import { electionService } from "../instance";
+
+export async function Elections() {
+  const elections = await electionService.getAll();
+
+  console.log(elections);
+
   return (
     <>
       <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
