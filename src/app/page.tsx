@@ -1,3 +1,5 @@
+import { Navbar } from "./features/components/navbar";
+
 export default function Home() {
-  return <h1>Hello Voter</h1>
+  return <Navbar />;
 }
