@@ -26,7 +26,7 @@ export async function Elections() {
               <p
                 className={
                   election.status === "ongoing"
-                    ? "text-primary"
+                    ? "text-accent"
                     : "text-warning"
                 }
                 key={election.id}
@@ -37,9 +37,9 @@ export async function Elections() {
           </article>
         </div>
       </main>
-      <div className="flex justify-center gap-4">
-        <button className="btn btn-primary">Create Election</button>
-        <button className="btn btn-primary">Register Opinion</button>
+      <div className="flex justify-center gap-4 flex-wrap">
+        <button className="btn btn-accent">Create Election</button>
+        <button className="btn btn-accent">Register Opinion</button>
         <button className="btn btn-warning">Close Election</button>
       </div>
     </>
