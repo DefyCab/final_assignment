@@ -26,7 +26,7 @@ export async function Elections() {
         </article>
         <article>
           {elections.map((election) => (
-            <p key={election.id}>{election}</p>
+            <p key={election.id}>{election.status}</p>
           ))}
         </article>
       </main>
