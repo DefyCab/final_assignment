@@ -1,4 +1,6 @@
-export function createService(db) {
+import { createRepository } from "./repository";
+
+export function createService(db: any) {
   const repository = createRepository(db);
 
   return {

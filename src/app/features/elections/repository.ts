@@ -1,6 +1,6 @@
-export function createRepository(db) {
+export function createRepository(db: any) {
   return {
-    async getALl() {
+    async getAll() {
       return await db;
     },
   };
