@@ -97,4 +97,4 @@ The app should help us understand how well the public voters agrees with the rep
 
 ## Big picture plan ##
 
-![Big_Picture_Plan](screenshot.png)
+![Big_Picture_Plan](big_picture_plan.png)
