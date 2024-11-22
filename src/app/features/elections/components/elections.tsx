@@ -25,13 +25,11 @@ export async function Elections() {
             {elections.map((election) => (
               <p
                 className={
-                  election.status === "ongoing"
-                    ? "text-accent"
-                    : "text-warning"
+                  election.status === true ? "text-accent" : "text-warning"
                 }
                 key={election.id}
               >
-                {election.status}
+                {election.status === true ? "ongoing" : "concluded"}
               </p>
             ))}
           </article>
