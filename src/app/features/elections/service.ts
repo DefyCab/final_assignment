@@ -5,7 +5,7 @@ export function createService(db: any) {
 
   return {
     async getAll() {
-      return repository.getAll()
+      return repository.getAll();
     },
   };
 }
