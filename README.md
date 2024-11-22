@@ -53,6 +53,7 @@ The app should help us understand how well the public voters agrees with the rep
 1. Public voters can select an election choice that they prefer. This will let the representatives know how well their votes align with their public voters. Public preferences are not part of the actual voting, and are only used as statistical information.
 2. Each representative has these public statistics:
     1. How many public votes the representative has gained.
+    // TODO: Check what is needed here
     2. The rate at which the public voters voted the same as their representative.
 3. There should be an average agreement rate between the representatives and public voters for each election.
 
@@ -92,3 +93,8 @@ The app should help us understand how well the public voters agrees with the rep
 - Failed submissions will have one extra attempt during an upcoming weekend to complete unfinished work.
 - Only send in code that represents your own code skills. We are not looking at assessing how well AI fails this test �� Succeed on your own terms! Anything else is considered cheating, and no more attempts will be given to complete the assignment.
 - This will be the main scoring point that represents your ability to code.
+
+
+## Big picture plan ##
+
+![Big_Picture_Plan](screenshot.png)
