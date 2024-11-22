@@ -4,12 +4,17 @@ export default function Elections() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="flex flex-col h-screen">
         <h1 className="font-bold text-center text-2xl mt-1">Elections</h1>
         <div className="mt-4 ml-1 mr-1 flex flex-row justify-between">
           <p className="text-decoration-line: underline">Issue</p>
           <p className="text-decoration-line: underline">Date Created</p>
           <p className="text-decoration-line: underline">Status</p>
+        </div>
+        <div className="flex justify-center gap-4 ">
+          <button className="btn btn-primary">Create Election</button>
+          <button className="btn btn-primary">Show Opinion</button>
+          <button className="btn btn-secondary">Close Election</button>
         </div>
       </main>
     </>
