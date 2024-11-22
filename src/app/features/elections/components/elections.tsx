@@ -19,6 +19,16 @@ export async function Elections() {
             <p key={election.id}>{election.issue}</p>
           ))}
         </article>
+        <article>
+          {elections.map((election) => (
+            <p key={election.id}>{election.createdAt.slice(0,10)}</p>
+          ))}
+        </article>
+        <article>
+          {elections.map((election) => (
+            <p key={election.id}>{election}</p>
+          ))}
+        </article>
       </main>
       <div className="flex justify-center gap-4">
         <button className="btn btn-primary">Create Election</button>
