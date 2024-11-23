@@ -37,10 +37,18 @@ export async function Election() {
               )}
             </div>
             <div className="mr-2 text-right">
-              <p>145</p>
-              <p>1345</p>
-              <p>398</p>
+              <p className="text-sm">145</p>
+              <p className="text-sm">1345</p>
+              <p className="text-sm">398</p>
             </div>
+          </div>
+        </article>
+        <article>
+          <div className="m-2 mt-4 flex justify-between flex-wrap">
+            <p className="font-semibold">Representatives</p>
+            <p className="font-semibold">Option voted for</p>
+            <p className="font-semibold">Votes per representative</p>
+            <p className="font-semibold">Agreement Rate</p>
           </div>
         </article>
       </section>
