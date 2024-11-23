@@ -1,7 +1,13 @@
+"use client";
+
+import { redirect } from "next/navigation";
 import { electionService } from "../instance";
 const elections = await electionService.getAll();
 
-export async function Elections() {
+export function Elections() {
+  const createElection = () => {
+    redirect("/elections/create");
+  };
   return (
     <>
       <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
@@ -35,7 +41,9 @@ export async function Elections() {
         </div>
       </main>
       <div className="flex justify-center gap-4 flex-wrap">
-        <button className="btn btn-accent">Create Election</button>
+        <button className="btn btn-accent" onClick={createElection}>
+          Create Election
+        </button>
         <button className="btn btn-accent">Register Opinion</button>
         <button className="btn btn-warning">Close Election</button>
       </div>

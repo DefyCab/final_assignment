@@ -1,3 +1,10 @@
-export default function createElection() {
-  return <h1>Create Election</h1>;
+import { Navbar } from "@/app/features";
+
+export default function Page() {
+  return (
+    <>
+      <Navbar />
+      <createElection />
+    </>
+  );
 }
