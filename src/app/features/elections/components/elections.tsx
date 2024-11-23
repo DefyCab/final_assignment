@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { electionService } from "../instance";
+
 const elections = await electionService.getAll();
 
 export function Elections() {
