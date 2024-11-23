@@ -18,21 +18,30 @@ export async function Election() {
             <p className="font-semibold">Options</p>
             <p className="font-semibold">Number of Votes</p>
           </div>
-          {election.map((e) =>
-            e.options?.map((option) => (
-              <p className="text-sm ml-2">{option.one}</p>
-            ))
-          )}
-          {election.map((e) =>
-            e.options?.map((option) => (
-              <p className="text-sm ml-2">{option.two}</p>
-            ))
-          )}
-          {election.map((e) =>
-            e.options?.map((option) => (
-              <p className="text-sm ml-2">{option.three}</p>
-            ))
-          )}
+          <div className="flex justify-between">
+            <div>
+              {election.map((e) =>
+                e.options?.map((option) => (
+                  <p className="text-sm ml-2">{option.one}</p>
+                ))
+              )}
+              {election.map((e) =>
+                e.options?.map((option) => (
+                  <p className="text-sm ml-2">{option.two}</p>
+                ))
+              )}
+              {election.map((e) =>
+                e.options?.map((option) => (
+                  <p className="text-sm ml-2">{option.three}</p>
+                ))
+              )}
+            </div>
+            <div className="mr-2 text-right">
+              <p>145</p>
+              <p>1345</p>
+              <p>398</p>
+            </div>
+          </div>
         </article>
       </section>
     </main>
