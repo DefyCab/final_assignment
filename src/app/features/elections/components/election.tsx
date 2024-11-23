@@ -37,18 +37,46 @@ export async function Election() {
               )}
             </div>
             <div className="mr-2 text-right">
-              <p className="text-sm">145</p>
-              <p className="text-sm">1345</p>
-              <p className="text-sm">398</p>
+              <p className="text-sm text-red-500">145</p>
+              <p className="text-sm text-green-500">1345</p>
+              <p className="text-sm text-red-500">398</p>
             </div>
           </div>
         </article>
         <article>
-          <div className="m-2 mt-4 flex justify-between flex-wrap">
-            <p className="font-semibold">Representatives</p>
-            <p className="font-semibold">Option voted for</p>
-            <p className="font-semibold">Votes per representative</p>
-            <p className="font-semibold">Agreement Rate</p>
+          <div className="m-2 mt-4 flex flex-row justify-between flex-wrap">
+            <div className="w-40 h-80">
+              <p className="font-semibold">Representatives</p>
+              <p>Erik Lindros</p>
+              <p>Karin Zetterström</p>
+              <p>Bilal Andersson</p>
+              <p>Basim Hassan</p>
+              <p>Love Ericson</p>
+            </div>
+            <div className="w-40 h-80">
+              <p className="font-semibold">Option voted for</p>
+              <p>Two</p>
+              <p>Three</p>
+              <p>One</p>
+              <p>Two</p>
+              <p>Two</p>
+            </div>
+            <div className="w-52 h-80">
+              <p className="font-semibold">Votes per representative</p>
+              <p>1001</p>
+              <p>398</p>
+              <p>145</p>
+              <p>24</p>
+              <p>320</p>
+            </div>
+            <div className="w-40 h-80">
+              <p className="font-semibold text-right">Agreement Rate</p>
+              <p className="text-right">52 %</p>
+              <p className="text-right">45 %</p>
+              <p className="text-right">89 %</p>
+              <p className="text-right">25 %</p>
+              <p className="text-right">60 %</p>
+            </div>
           </div>
         </article>
       </section>
