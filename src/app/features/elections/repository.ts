@@ -8,7 +8,10 @@ export function createRepository(db: Db) {
     getAll: () => {
       return data;
     },
-
+    get: (id: string) => {
+      const election = data.filter((election) => election.id === id);
+      return election;
+    },
     create: (election: Election) => {
       return data.push(election);
     },

@@ -6,8 +6,9 @@ import { electionService } from "../instance";
 const elections = await electionService.getAll();
 
 export function Elections() {
-  const getElectionId = (id: string) => {
-    console.log(id)
+  const getElectionId = async (id: string) => {
+    const election = await electionService.get(id);
+    return election[0];
   };
 
   const createElection = () => {
@@ -18,10 +19,7 @@ export function Elections() {
       <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
         <h1 className="font-bold text-center text-2xl mt-1">Elections</h1>
         <div className="mt-4 flex flex-row justify-between">
-          <article
-            className="cursor-pointer"
-            // onClick={() => getElectionId(election.id)}
-          >
+          <article className="cursor-pointer">
             <p className="text-decoration-line: underline">Issue</p>
             {elections.map((election) => (
               <p onClick={() => getElectionId(election.id)} key={election.id}>
