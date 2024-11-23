@@ -2,11 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { electionService } from "../instance";
-import { useState } from "react";
 
 const elections = await electionService.getAll();
 
 export function Elections() {
+  const getElectionId = (id: string) => {
+    console.log(id)
+  };
+
   const createElection = () => {
     redirect("/elections/create");
   };
@@ -15,10 +18,15 @@ export function Elections() {
       <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
         <h1 className="font-bold text-center text-2xl mt-1">Elections</h1>
         <div className="mt-4 flex flex-row justify-between">
-          <article>
+          <article
+            className="cursor-pointer"
+            // onClick={() => getElectionId(election.id)}
+          >
             <p className="text-decoration-line: underline">Issue</p>
             {elections.map((election) => (
-              <p key={election.id}>{election.issue}</p>
+              <p onClick={() => getElectionId(election.id)} key={election.id}>
+                {election.issue}
+              </p>
             ))}
           </article>
           <article>
