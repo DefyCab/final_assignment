@@ -21,18 +21,8 @@ export async function Election() {
           <div className="flex justify-between">
             <div>
               {election.map((e) =>
-                e.options?.map((option) => (
-                  <p className="text-sm ml-2">{option.one}</p>
-                ))
-              )}
-              {election.map((e) =>
-                e.options?.map((option) => (
-                  <p className="text-sm ml-2">{option.two}</p>
-                ))
-              )}
-              {election.map((e) =>
-                e.options?.map((option) => (
-                  <p className="text-sm ml-2">{option.three}</p>
+                e.options?.map((options) => (
+                  <p className="text-sm ml-2">{options}</p>
                 ))
               )}
             </div>

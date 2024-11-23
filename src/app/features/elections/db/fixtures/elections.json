@@ -3,15 +3,9 @@
         "id": "a9deb747-96c2-4ca5-b21d-34e6a40c1e40",
         "issue": "Wildlife preservation",
         "options": [
-            {
-                "one": "Buy land to extend current reservation"
-            },
-            {
-                "two": "Don't extend current reservation"
-            },
-            {
-                "three": "Outsource responsibility to private actors"
-            }
+            "Buy land to extend current reservation",
+            "Don't extend current reservation",
+            "Outsource responsibility to private actors"
         ],
         "createdAt": "2024-11-11 16:13:18.045904",
         "status": true
