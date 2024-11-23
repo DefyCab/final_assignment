@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { electionService } from "../instance";
+import { useState } from "react";
 
 const elections = await electionService.getAll();
 
