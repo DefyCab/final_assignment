@@ -1,4 +1,4 @@
-import { db } from "./db/index"
+import db from "./db/fixtures/elections.json";
 
 import { createService } from "./service";
 

@@ -12,8 +12,8 @@ export function createService(db: Db) {
   const repository = createRepository(db);
 
   return {
-    getAll: async () => {
-      return await repository.getAll();
+    getAll: () => {
+      return repository.getAll();
     },
     get: async (id: string) => {
       return repository.get(id);
