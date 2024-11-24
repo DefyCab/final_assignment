@@ -1,4 +1,6 @@
-const representatives = userService.getAll()
+import { userService } from "../instance";
+
+const representatives = userService.getAll();
 
 export function Users() {
   return (
