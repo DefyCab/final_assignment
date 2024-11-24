@@ -1,5 +1,6 @@
 import { electionService } from "../instance";
 
+
 export async function Election() {
   const id = "a9deb747-96c2-4ca5-b21d-34e6a40c1e40";
 

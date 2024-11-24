@@ -1,17 +1,22 @@
 import { electionService } from "../instance";
+import { useRouter } from "next/navigation";
 
 const elections = electionService.getAll();
 
 export function ElectionsCard() {
+  const router = useRouter();
   const getElectionId = (id: string) => {
-    console.log(id)
+    console.log(id);
   };
   return (
     <div className="mt-4 flex flex-row justify-between">
       <article className="cursor-pointer">
         <p className="text-decoration-line: underline">Issue</p>
         {elections.map((election) => (
-          <p key={election.id} onClick={() => getElectionId(election.id)}>
+          <p
+            key={election.id}
+            onClick={() => router.push(`/elections/election/${election.id}`)}
+          >
             {election.issue}
           </p>
         ))}
