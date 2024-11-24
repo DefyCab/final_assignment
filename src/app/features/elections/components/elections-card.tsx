@@ -3,12 +3,17 @@ import { electionService } from "../instance";
 const elections = electionService.getAll();
 
 export function ElectionsCard() {
+  const getElectionId = (id: string) => {
+    console.log(id)
+  };
   return (
     <div className="mt-4 flex flex-row justify-between">
       <article className="cursor-pointer">
         <p className="text-decoration-line: underline">Issue</p>
         {elections.map((election) => (
-          <p key={election.id}>{election.issue}</p>
+          <p key={election.id} onClick={() => getElectionId(election.id)}>
+            {election.issue}
+          </p>
         ))}
       </article>
 

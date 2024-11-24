@@ -2,6 +2,9 @@
 
 import { redirect } from "next/navigation";
 import { ElectionsCard } from "./elections-card";
+import { Election } from "./election";
+
+const id = "a9deb747-96c2-4ca5-b21d-34e6a40c1e40";
 
 export function Elections() {
   const createElection = () => {
