@@ -5,9 +5,7 @@ const elections = electionService.getAll();
 
 export function ElectionsCard() {
   const router = useRouter();
-  const getElectionId = (id: string) => {
-    console.log(id);
-  };
+ 
   return (
     <div className="mt-4 flex flex-row justify-between">
       <article className="cursor-pointer">
