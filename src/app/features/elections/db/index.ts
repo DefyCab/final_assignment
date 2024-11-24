@@ -1,3 +1,6 @@
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
-export const db = drizzle({ client: sql });
+import "dotenv/config";
+import { drizzle } from "drizzle-orm/node-postgres";
+
+export const db = drizzle(process.env.DATABASE_URL!);
+
+export type Db = typeof db

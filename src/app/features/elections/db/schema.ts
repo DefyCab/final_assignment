@@ -10,3 +10,4 @@ export const electionsTable = pgTable("elections", {
     .default(sql`now()`),
   status: boolean(),
 });
+
