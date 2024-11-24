@@ -1,10 +1,11 @@
 import { electionService } from "../instance";
 
+export type Id = {
+  id: string;
+};
 
-export async function Election() {
-  const id = "a9deb747-96c2-4ca5-b21d-34e6a40c1e40";
-
-  const election = await electionService.get(id);
+export async function Election(id: Id) {
+  const election = await electionService.get(id.id);
 
   return (
     <main className="mr-4 ml-4 flex justify-center">
