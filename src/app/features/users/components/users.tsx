@@ -1,6 +1,4 @@
-import { userService } from "../instance";
-
-const representatives = userService.getAll();
+import { RepresentativeCard } from "./representativesCard";
 
 export function Users() {
   return (
@@ -9,6 +7,7 @@ export function Users() {
         <h1 className="font-bold text-center text-2xl mt-1">
           List of Representatives
         </h1>
+        <RepresentativeCard />
       </main>
       <div className="flex justify-center gap-4 flex-wrap">
         <button className="btn btn-accent">Nominate Representative</button>
