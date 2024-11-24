@@ -1,5 +1,5 @@
-import { Navbar } from "@/app/features";
-import { Users } from "@/app/features";
+import { Navbar } from "@/app/features/users";
+import { Users } from "@/app/features/users";
 
 export default function Page() {
   return (

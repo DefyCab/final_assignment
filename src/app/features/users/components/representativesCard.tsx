@@ -5,7 +5,7 @@ export function RepresentativeCard() {
 
   return (
     <article>
-      <p className="text-decoration-line: underline font-semibold">
+      <p className="mt-4 text-decoration-line: underline font-semibold">
         Representatives
       </p>
       {representatives.map((reps) => (

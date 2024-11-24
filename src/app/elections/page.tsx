@@ -1,5 +1,5 @@
-import { Elections } from "../features";
-import { Navbar } from "../features";
+import { Elections } from "../features/elections";
+import { Navbar } from "../features/elections";
 
 export default function Page() {
   return (
