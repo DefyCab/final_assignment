@@ -13,7 +13,7 @@ export function createService(db: Db) {
 
   return {
     getAll: async () => {
-      return repository.getAll();
+      return await repository.getAll();
     },
     get: async (id: string) => {
       return repository.get(id);
