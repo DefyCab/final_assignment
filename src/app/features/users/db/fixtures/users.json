@@ -1,0 +1,27 @@
+[
+  {
+    "id": "a7bf6fb3-94ee-4b1e-97be-4dd60d26aeb0",
+    "name": "Erik Lindros",
+    "email": "erik.lindros@gmail.com"
+  },
+  {
+    "id": "c7f72c6a-b636-45a0-90c3-8b65a64008d8",
+    "name": "Karin Zetterström",
+    "email": "karin.zetterstrom@gmail.com"
+  },
+  {
+    "id": "1d58e3ca-d7e0-4bb1-9696-e3216746fb9d",
+    "name": "Bilal Andersson",
+    "email": "bilal.andersson@gmail.com"
+  },
+  {
+    "id": "11cc08b3-6a27-4c47-872e-cbd98f7fad23",
+    "name": "Basim Hassan",
+    "email": "basim.hassan@gmail.com"
+  },
+  {
+    "id": "9b8c51a1-c823-4a53-8bf0-e066cb812e0e",
+    "name": "Love Ericson",
+    "email": "love.ericson@gmail.com"
+  }
+]
