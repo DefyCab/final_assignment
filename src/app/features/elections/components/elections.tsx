@@ -3,7 +3,6 @@
 import { redirect } from "next/navigation";
 import { ElectionsCard } from "./elections-card";
 
-
 export function Elections() {
   const createElection = () => {
     redirect("/elections/create");
