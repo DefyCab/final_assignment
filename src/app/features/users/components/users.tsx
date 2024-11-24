@@ -1,4 +1,4 @@
-const representatives = userService.
+const representatives = userService.getAll()
 
 export function Users() {
   return (
