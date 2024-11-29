@@ -11,11 +11,10 @@
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@types/pg": "^8.11.10",
+    "@neondatabase/serverless": "^0.10.4",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.4",
     "next": "15.0.3",
-    "pg": "^8.13.1",
     "pnpm": "^9.13.2",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
