@@ -1,4 +1,4 @@
-import { Navbar } from "../features/elections/components/navbar";
+import { Navbar } from "../features/elections";
 
 export default function Home() {
   return <Navbar />;
