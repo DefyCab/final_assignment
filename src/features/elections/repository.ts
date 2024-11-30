@@ -5,7 +5,7 @@ import { elections } from "@/db/schema";
 export function createRepository(db: Db) {
   return {
     getAll: async () => {
-      await db.select().from(elections);
+    return await db.select().from(elections).limit(10);
     },
     // get: (id: string) => {
     //   const election = elections.filter((election) => election.id === id);

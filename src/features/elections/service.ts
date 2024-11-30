@@ -4,6 +4,7 @@ import { createRepository } from "./repository";
 export type Election = {
   id: string;
   issue: string;
+  options: unknown;
   createdAt: string;
   status: boolean;
 };
@@ -12,8 +13,8 @@ export function createService(db: Db) {
   const repository = createRepository(db);
 
   return {
-    getAll: () => {
-      return repository.getAll();
+    getAll: async () => {
+      return await repository.getAll();
     },
     // get: async (id: string) => {
     //   return repository.get(id);
