@@ -1,15 +1,17 @@
 import { Db } from "./instance";
 import { createRepository } from "./repository";
 
-export type Options = {
-  options: String[];
-};
-
 export type Election = {
   id: string;
   issue: string;
-  options: Options | unknown;
+  options: String[];
   createdAt: string;
+  status: boolean;
+};
+
+export type CreateElection = {
+  issue: string;
+  options: String[];
   status: boolean;
 };
 
@@ -23,7 +25,7 @@ export function createService(db: Db) {
     get: async (id: string) => {
       return await repository.get(id);
     },
-    create: async (election: any) => {
+    create: async (election: CreateElection) => {
       return await repository.create(election);
     },
   };
