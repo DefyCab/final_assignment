@@ -1,6 +1,7 @@
 import { Db } from "./instance";
 import { elections } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { Election } from "./service";
 
 export function createRepository(db: Db) {
   return {

@@ -2,8 +2,13 @@
 
 import { redirect } from "next/navigation";
 import { ElectionsCard } from "./elections-card";
+import type { Election } from "../service";
 
-export function Elections({ elections }: any) {
+type Props = {
+  elections: Election[];
+};
+
+export function Elections({ elections }: Props) {
   const createElection = () => {
     redirect("/elections/create");
   };

@@ -1,7 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
+import type { Election } from "../service";
 
-export function ElectionsCard({ elections }: any) {
+type Props = {
+  elections: Election[];
+};
+
+export function ElectionsCard({ elections }: Props) {
   const router = useRouter();
 
   console.log(elections);

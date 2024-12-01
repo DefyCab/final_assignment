@@ -1,10 +1,14 @@
 import { Db } from "./instance";
 import { createRepository } from "./repository";
 
+export type Options = {
+  options: String[];
+};
+
 export type Election = {
   id: string;
   issue: string;
-  options: unknown;
+  options: Options | unknown;
   createdAt: string;
   status: boolean;
 };
