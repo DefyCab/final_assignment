@@ -11,8 +11,8 @@ export function createRepository(db: Db) {
     get: async (id: string) => {
       return await db.select().from(elections).where(eq(elections.id, id));
     },
-    // create: (election: Election) => {
-    //   return elections.push(election);
-    // },
+    create: async (election: any) => {
+      return await db.insert(elections).values(election)
+    },
   };
 }

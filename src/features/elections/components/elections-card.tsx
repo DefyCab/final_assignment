@@ -9,8 +9,6 @@ type Props = {
 export function ElectionsCard({ elections }: Props) {
   const router = useRouter();
 
-  console.log(elections);
-
   return (
     <div className="mt-4 flex flex-row justify-between">
       <article className="cursor-pointer">
