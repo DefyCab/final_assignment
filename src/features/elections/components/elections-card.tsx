@@ -1,11 +1,10 @@
-"use server"
-import { electionService } from "../instance";
-// import { useRouter } from "next/navigation";
+"use client";
+import { useRouter } from "next/navigation";
 
-export async function ElectionsCard() {
-  const elections = await electionService.getAll();
-  // const router = useRouter();
-  // const elections: any = [];
+export function ElectionsCard({ elections }: any) {
+  const router = useRouter();
+
+  console.log(elections);
 
   return (
     <div className="mt-4 flex flex-row justify-between">
@@ -14,7 +13,7 @@ export async function ElectionsCard() {
         {elections.map((election) => (
           <p
             key={election.id}
-            // onClick={() => router.push(`/elections/election/${election.id}`)}
+            onClick={() => router.push(`/elections/election/${election.id}`)}
           >
             {election.issue}
           </p>

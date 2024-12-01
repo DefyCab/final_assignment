@@ -1,16 +1,15 @@
 import { Db } from "./instance";
-import { Election } from "./service";
 import { elections } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 export function createRepository(db: Db) {
   return {
     getAll: async () => {
-    return await db.select().from(elections).limit(10);
+      return await db.select().from(elections).limit(10);
     },
-    // get: (id: string) => {
-    //   const election = elections.filter((election) => election.id === id);
-    //   return election;
-    // },
+    get: async (id: string) => {
+      return await db.select().from(elections).where(eq(elections.id, id));
+    },
     // create: (election: Election) => {
     //   return elections.push(election);
     // },

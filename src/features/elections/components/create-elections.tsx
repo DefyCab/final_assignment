@@ -1,7 +1,7 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { createElectionAction } from "../actions";
+// import { createElectionAction } from "../actions";
 
 export function CreateElection() {
   const redirectOnClick = () => {
@@ -11,7 +11,7 @@ export function CreateElection() {
   return (
     <>
       <form
-        action={createElectionAction}
+        // action={createElectionAction}
         className="flex flex-col justify-center items-center m-1"
       >
         <label className="m-1" htmlFor="issue">
