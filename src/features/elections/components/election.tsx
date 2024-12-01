@@ -75,10 +75,14 @@ export async function Election(id: Id) {
             <form action={closeElection}>
               {election.map(
                 (e) =>
-                  e.status && (
+                  e.status ? (
                     <button key={e.id} type="submit" className="btn btn-warning">
                       Close Election
                     </button>
+                  ) : (
+                    <button key={e.id} className="btn btn-disabled">
+                    Closed
+                  </button>
                   )
               )}
               <input name="id" value={id.id} className="invisible" readOnly />
