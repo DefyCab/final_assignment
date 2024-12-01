@@ -73,15 +73,15 @@ export async function Election(id: Id) {
           </div>
           <div className="flex justify-center">
             <form action={closeElection}>
-              <button type="submit" className="btn btn-warning">
-                Close Election
-              </button>
-              <input
-              name="id"
-              value={id.id}
-              className="invisible"
-              readOnly 
-              />
+              {election.map(
+                (e) =>
+                  e.status && (
+                    <button key={e.id} type="submit" className="btn btn-warning">
+                      Close Election
+                    </button>
+                  )
+              )}
+              <input name="id" value={id.id} className="invisible" readOnly />
             </form>
           </div>
         </article>

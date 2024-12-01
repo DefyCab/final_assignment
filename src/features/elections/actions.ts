@@ -10,7 +10,7 @@ export async function closeElection(formData: FormData) {
 
   console.log(id);
   
-  // revalidateTag("elections");
+  revalidateTag("elections");
 
   await electionService.update(id);
 }
