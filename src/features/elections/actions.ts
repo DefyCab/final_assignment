@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { electionService } from "./instance";
 
 export async function createElectionAction(formData: FormData) {
@@ -17,6 +18,8 @@ export async function createElectionAction(formData: FormData) {
   if (!issue) {
     throw new Error("No content");
   }
+
+  revalidateTag("elections");
 
   await electionService.create(election);
 }

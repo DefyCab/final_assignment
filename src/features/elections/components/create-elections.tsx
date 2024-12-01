@@ -23,11 +23,17 @@ export function CreateElection() {
         </label>
         <input className="w-72" type="text" name="options" />
         <button
-          onClick={redirectOnClick}
           type="submit"
           className="btn btn-accent mt-4"
         >
           Create Election
+        </button>
+        <button
+          onClick={redirectOnClick}
+          type="button"
+          className="btn btn-warning mt-4"
+        >
+          Back
         </button>
       </form>
     </>
