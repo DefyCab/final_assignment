@@ -1,4 +1,5 @@
 import { electionService } from "../instance";
+import { closeElection } from "../actions";
 
 export type Id = {
   id: string;
@@ -9,7 +10,7 @@ export async function Election(id: Id) {
 
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
-      <section className="w-full h-[calc(100vh-112px)] bg-base-300 mt-4 border-solid border-2 border-primary rounded">
+      <section className="w-full h-[calc(100vh-100px)] bg-base-300 mt-4 border-solid border-2 border-primary rounded ">
         <article>
           {election.map((e) => (
             <h3 className="font-bold text-2xl text-center" key={e.id}>
@@ -69,6 +70,19 @@ export async function Election(id: Id) {
               <p className="text-right">25 %</p>
               <p className="text-right">60 %</p>
             </div>
+          </div>
+          <div className="flex justify-center">
+            <form action={closeElection}>
+              <button type="submit" className="btn btn-warning">
+                Close Election
+              </button>
+              <input
+              name="id"
+              value={id.id}
+              className="invisible"
+              readOnly 
+              />
+            </form>
           </div>
         </article>
       </section>

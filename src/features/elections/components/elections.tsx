@@ -23,7 +23,6 @@ export function Elections({ elections }: Props) {
           Create Election
         </button>
         <button className="btn btn-accent">Register Opinion</button>
-        <button className="btn btn-warning">Close Election</button>
       </div>
     </>
   );
