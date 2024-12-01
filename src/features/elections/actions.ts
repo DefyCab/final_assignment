@@ -4,11 +4,13 @@ import { electionService } from "./instance";
 
 export async function createElectionAction(formData: FormData) {
   const issue = formData.get("issue") as string;
-  const options = formData.get("options") as unknown;
+  const options = formData.get("options") as string;
+
+  const optionsToArray = options.split(", ").map((item) => item.trim());
 
   const election = {
     issue: issue,
-    options: options,
+    options: optionsToArray,
     status: true,
   };
 
