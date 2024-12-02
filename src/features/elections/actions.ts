@@ -4,14 +4,8 @@ import { revalidateTag } from "next/cache";
 import { electionService } from "./instance";
 
 export async function closeElection(formData: FormData) {
-  console.log(formData);
-  
-  const id = formData.get("id")
-
-  console.log(id);
-  
+  const id = formData.get("id") as string
   revalidateTag("elections");
-
   await electionService.update(id);
 }
 

@@ -4,14 +4,14 @@ import { createRepository } from "./repository";
 export type Election = {
   id: string;
   issue: string;
-  options: String[];
+  options: string[];
   createdAt: string;
   status: boolean;
 };
 
 export type CreateElection = {
   issue: string;
-  options: String[];
+  options: string[];
   status: boolean;
 };
 
@@ -28,7 +28,7 @@ export function createService(db: Db) {
     create: async (election: CreateElection) => {
       return await repository.create(election);
     },
-    update: async (id: any) => {
+    update: async (id: string) => {
       return await repository.update(id);
     },
   };

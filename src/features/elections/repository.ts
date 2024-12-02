@@ -1,6 +1,7 @@
 import { Db, electionService } from "./instance";
 import { elections } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { CreateElection } from "./service";
 
 export function createRepository(db: Db) {
   return {
@@ -10,10 +11,10 @@ export function createRepository(db: Db) {
     get: async (id: string) => {
       return await db.select().from(elections).where(eq(elections.id, id));
     },
-    create: async (election: any) => {
+    create: async (election: CreateElection) => {
       return await db.insert(elections).values(election);
     },
-    update: async (id: any) => {
+    update: async (id: string) => {
       const election = await electionService.get(id);
 
       console.log(election);
@@ -22,7 +23,7 @@ export function createRepository(db: Db) {
         return;
       }
 
-      await db
+      return await db
         .update(elections)
         .set({
           ...(election[0].status && { status: false }),

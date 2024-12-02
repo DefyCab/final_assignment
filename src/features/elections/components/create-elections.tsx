@@ -17,15 +17,12 @@ export function CreateElection() {
         <label className="m-1" htmlFor="issue">
           Issue
         </label>
-        <input className="w-72" type="text" name="issue" />
+        <input required className="w-72" type="text" name="issue" />
         <label className="m-1" htmlFor="issue">
           Options
         </label>
-        <input className="w-72" type="text" name="options" />
-        <button
-          type="submit"
-          className="btn btn-accent mt-4"
-        >
+        <input required className="w-72" type="text" name="options" />
+        <button type="submit" className="btn btn-accent mt-4">
           Create Election
         </button>
         <button
