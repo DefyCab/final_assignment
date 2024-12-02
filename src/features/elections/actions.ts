@@ -1,12 +1,14 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { revalidateTag } from "next/cache";
 import { electionService } from "./instance";
 
 export async function closeElection(formData: FormData) {
-  const id = formData.get("id") as string
+  const id = formData.get("id") as string;
   revalidateTag("elections");
   await electionService.update(id);
+  redirect("/elections");
 }
 
 export async function createElectionAction(formData: FormData) {
