@@ -6,6 +6,8 @@ import {
   text,
   timestamp,
   jsonb,
+  varchar,
+  integer,
 } from "drizzle-orm/pg-core";
 
 export const elections = pgTable("elections", {
@@ -16,4 +18,16 @@ export const elections = pgTable("elections", {
     .notNull()
     .default(sql`now()`),
   status: boolean(),
+});
+
+export const representatives = pgTable("representatives", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  name: varchar("name").notNull(),
+  email: varchar("email", { length: 255 }).unique().notNull(),
+  representative: boolean(),
+});
+
+export const votes = pgTable("votes", {
+  user_id: uuid("id").primaryKey(),
+  votes: integer(),
 });

@@ -1,7 +1,18 @@
 import { Db, electionService } from "./instance";
 import { elections } from "../../db/schema";
-import { asc, desc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { CreateElection } from "./service";
+import { z } from "zod";
+
+const ElectionsSchema = z.object({
+  id: z.string().uuid(),
+  issue: z.string(),
+  options: z.array(z.string()),
+  createdAt: z.string(),
+  status: z.boolean(),
+});
+
+export type Election = z.infer<typeof ElectionsSchema>;
 
 export function createRepository(db: Db) {
   return {
@@ -20,8 +31,6 @@ export function createRepository(db: Db) {
     },
     update: async (id: string) => {
       const election = await electionService.get(id);
-
-      console.log(election);
 
       if (election[0].status === false) {
         return;

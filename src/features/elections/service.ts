@@ -1,13 +1,5 @@
 import { Db } from "./instance";
-import { createRepository } from "./repository";
-
-export type Election = {
-  id: string;
-  issue: string;
-  options: string[];
-  createdAt: string;
-  status: boolean;
-};
+import { createRepository, Election } from "./repository";
 
 export type CreateElection = {
   issue: string;

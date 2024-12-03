@@ -1,6 +1,6 @@
-import db from "./db/fixtures/users.json"
+import db from "./db/fixtures/users.json";
 
-import { createService } from "./service"
+import { createService } from "./service";
 
 export type Db = typeof db;
 
