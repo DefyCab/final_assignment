@@ -1,6 +1,12 @@
 "use client";
 
-export function RepresentativeCard({ representatives }: any) {
+import type { Representatives } from "../repository";
+
+type Props = {
+  representatives: Representatives[];
+};
+
+export function RepresentativeCard({ representatives }: Props) {
   return (
     <article>
       <p className="mt-4 text-decoration-line: underline font-semibold">

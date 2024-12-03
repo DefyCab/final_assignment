@@ -17,14 +17,14 @@ export const elections = pgTable("elections", {
   createdAt: timestamp("createdAt", { mode: "string" })
     .notNull()
     .default(sql`now()`),
-  status: boolean(),
+  status: boolean().notNull(),
 });
 
 export const representatives = pgTable("representatives", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: varchar("name").notNull(),
   email: varchar("email", { length: 255 }).unique().notNull(),
-  representative: boolean(),
+  representative: boolean().notNull(),
 });
 
 export const votes = pgTable("votes", {

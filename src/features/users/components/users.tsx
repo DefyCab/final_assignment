@@ -3,7 +3,7 @@ import { userService } from "../instance";
 
 export async function Users() {
   const representatives = await userService.getAll();
-  
+
   return (
     <>
       <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
