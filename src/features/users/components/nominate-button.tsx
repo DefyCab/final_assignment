@@ -1,3 +1,13 @@
+import { redirect } from "next/navigation";
+
 export function NominateRepresentative() {
-  return <button className="btn btn-accent">Nominate Representative</button>;
+
+  return (
+    <button
+      onClick={() => redirect("/representatives/nominate/")}
+      className="btn btn-accent"
+    >
+      Nominate Representative
+    </button>
+  );
 }

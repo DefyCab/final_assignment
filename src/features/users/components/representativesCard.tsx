@@ -9,6 +9,7 @@ type Props = {
 };
 
 export function RepresentativeCard({ representatives }: Props) {
+
   return (
     <>
       <article>
@@ -23,7 +24,7 @@ export function RepresentativeCard({ representatives }: Props) {
           ))}
       </article>
       <div className="flex justify-center gap-4 flex-wrap">
-        <NominateRepresentative />
+        <NominateRepresentative/>
         <VoteRepresentative />
       </div>
     </>
