@@ -12,7 +12,6 @@ export async function Users() {
         </h1>
         <RepresentativeCard representatives={representatives} />
       </main>
-      <Button />
     </>
   );
 }
