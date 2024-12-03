@@ -1,10 +1,10 @@
+import { representatives } from "@/db/schema";
 import { Db } from "./instance";
 
 export function createRepository(db: Db) {
-  const users = db;
   return {
-    getAll: () => {
-      return users;
+    getAll: async () => {
+      return await db.select().from(representatives);
     },
   };
 }

@@ -5,8 +5,8 @@ export function createService(db: Db) {
   const repository = createRepository(db);
 
   return {
-    getAll: () => {
-      return repository.getAll();
+    getAll: async () => {
+      return await repository.getAll();
     },
   };
 }

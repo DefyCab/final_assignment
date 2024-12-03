@@ -1,16 +1,17 @@
-import { userService } from "../instance";
+"use client";
 
-export function RepresentativeCard() {
-  const representatives = userService.getAll();
-
+export function RepresentativeCard({ representatives }: any) {
   return (
     <article>
       <p className="mt-4 text-decoration-line: underline font-semibold">
         Representatives
       </p>
-      {representatives.map((reps) => (
-        <p key={reps.id}>{reps.name}</p>
-      ))}
+
+      {representatives
+        .filter((rep) => rep.representative)
+        .map((reps) => (
+          <p key={reps.id}>{reps.name}</p>
+        ))}
     </article>
   );
 }

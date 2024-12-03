@@ -1,4 +1,4 @@
-import db from "./db/fixtures/users.json";
+import { db } from "../../db/drizzle";
 
 import { createService } from "./service";
 
