@@ -12,10 +12,7 @@ export async function Users() {
         </h1>
         <RepresentativeCard representatives={representatives} />
       </main>
-      <div className="flex justify-center gap-4 flex-wrap">
-        <button className="btn btn-accent">Nominate Representative</button>
-        <button className="btn btn-warning">Vote for Representative</button>
-      </div>
+      <Button />
     </>
   );
 }
