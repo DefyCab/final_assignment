@@ -1,7 +1,9 @@
-import { db } from "@/db/drizzle"
-import { userService } from "./instance"
+import { userService } from "./instance";
 
 export async function setRepresentative(id: string) {
+  return await userService.get(id);
+}
 
-    await userService.update()
+export function setId(id: string) {
+  return id;
 }

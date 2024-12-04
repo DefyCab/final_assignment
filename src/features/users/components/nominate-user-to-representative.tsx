@@ -1,13 +1,13 @@
-import { userService } from "../instance";
-import { setRepresentative } from "../action";
+"use client";
 
-export async function NominateUserToRepresentative() {
-  const users = await userService.getAll();
+import type { Representatives } from "../repository";
+import { setId } from "../action";
 
-  function getId(id: string) {
-    setRepresentative(id);
-  }
+type Props = {
+  users: Representatives[];
+};
 
+export function NominateUserToRepresentative({ users }: Props) {
   return (
     <article>
       <p className="mt-4 text-decoration-line: underline font-semibold">
@@ -17,7 +17,11 @@ export async function NominateUserToRepresentative() {
       {users
         .filter((user) => !user.representative)
         .map((user) => (
-          <p onClick={() => getId(user.id)} key={user.id}>
+          <p
+            className="cursor-pointer"
+            onClick={() => setId(user.id)}
+            key={user.id}
+          >
             {user.name}
           </p>
         ))}

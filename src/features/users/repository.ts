@@ -1,7 +1,9 @@
 import { representatives } from "../../db/schema";
-import { Db } from "./instance";
+import { userService } from "./instance";
+import type { Db } from "./instance";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
+import { setId } from "../users/action";
 
 const RepresentativesSchema = z.object({
   id: z.string().uuid(),
@@ -15,16 +17,34 @@ export type Representatives = z.infer<typeof RepresentativesSchema>;
 export function createRepository(db: Db) {
   return {
     getAll: async () => {
-      return await db.select().from(representatives);
+      try {
+        const result = await db.select().from(representatives);
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
     },
     get: async (id: string) => {
-      return await db
-        .select()
-        .from(representatives)
-        .where(eq(representatives.id, id));
+      try {
+        const result = await db
+          .select()
+          .from(representatives)
+          .where(eq(representatives.id, id));
+
+        return result;
+      } catch (error) {
+        console.log(error);
+      }
     },
     update: async (id: string) => {
-      return await db.update(representatives);
+      const user = await userService.get(id);
+
+      return;
+      // return await db.update(representatives).set({});
+    },
+
+    getId: async () => {
+      const id = setId();
     },
   };
 }
