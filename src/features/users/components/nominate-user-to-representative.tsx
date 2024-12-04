@@ -1,7 +1,13 @@
 import { userService } from "../instance";
+import { setRepresentative } from "../action";
 
 export async function NominateUserToRepresentative() {
   const users = await userService.getAll();
+
+  function getId(id: string) {
+    setRepresentative(id);
+  }
+
   return (
     <article>
       <p className="mt-4 text-decoration-line: underline font-semibold">
@@ -11,7 +17,9 @@ export async function NominateUserToRepresentative() {
       {users
         .filter((user) => !user.representative)
         .map((user) => (
-          <p key={user.id}>{user.name}</p>
+          <p onClick={() => getId(user.id)} key={user.id}>
+            {user.name}
+          </p>
         ))}
     </article>
   );

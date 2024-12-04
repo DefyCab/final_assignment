@@ -8,5 +8,12 @@ export function createService(db: Db) {
     getAll: async () => {
       return await repository.getAll();
     },
+    get: async (id: string) => {
+      return await repository.get(id)
+    },
+    update: async (id: string) => {
+      return await repository.update(id);
+    },
+
   };
 }

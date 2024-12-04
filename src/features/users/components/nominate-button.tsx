@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 
 export function NominateRepresentative() {
-
   return (
     <button
       onClick={() => redirect("/representatives/nominate/")}
