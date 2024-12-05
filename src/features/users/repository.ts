@@ -36,10 +36,20 @@ export function createRepository(db: Db) {
       }
     },
     update: async (id: string) => {
-      const user = await userService.get(id);
+      try {
+        const user = await userService.get(id);
+        if (!user) return;
 
-      return;
-      // return await db.update(representatives).set({});
+        if (!user[0].representative === false) return;
+        return await db
+          .update(representatives)
+          .set({
+            ...(!user[0].representative && { representative: true }),
+          })
+          .where(eq(representatives.id, id));
+      } catch (error) {
+        console.log(error);
+      }
     },
   };
 }

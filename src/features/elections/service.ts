@@ -1,5 +1,5 @@
 import { Db } from "./instance";
-import { createRepository, Election } from "./repository";
+import { createRepository } from "./repository";
 
 export type CreateElection = {
   issue: string;
