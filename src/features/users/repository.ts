@@ -3,7 +3,6 @@ import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
-import { setId } from "../users/action";
 
 const RepresentativesSchema = z.object({
   id: z.string().uuid(),
@@ -41,10 +40,6 @@ export function createRepository(db: Db) {
 
       return;
       // return await db.update(representatives).set({});
-    },
-
-    getId: async () => {
-      const id = setId();
     },
   };
 }

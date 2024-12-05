@@ -14,8 +14,5 @@ export function createService(db: Db) {
     update: async (id: string) => {
       return await repository.update(id);
     },
-    getId: async () => {
-      return await repository.getId()
-    }
   };
 }
