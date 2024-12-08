@@ -1,4 +1,6 @@
 import { electionService } from "@/features/elections/instance";
+import { representatives } from "./schema";
+import { userService } from "@/features/users/instance";
 
 async function seed() {
   const elections = [
@@ -82,9 +84,65 @@ async function seed() {
     },
   ];
 
-  elections.map(async (election) => await electionService.create(election));
+  const users = [
+    {
+      name: "Erik Lindros",
+      email: "erik.lindros@gmail.com",
+      representative: true,
+    },
+    {
+      name: "Karin Zetterström",
+      email: "karin.zetterstrom@gmail.com",
+      representative: true,
+    },
+    {
+      name: "Bilal Andersson",
+      email: "bilal.andersson@gmail.com",
+      representative: true,
+    },
+    {
+      name: "Basim Hassan",
+      email: "basim.hassan@gmail.com",
+      representative: true,
+    },
+    {
+      name: "Love Ericson",
+      email: "love.ericson@gmail.com",
+      representative: false,
+    },
+    {
+      name: "Trevor Seagrass",
+      email: "trevor.seagrass@gmail.com",
+      representative: false,
+    },
+    {
+      name: "Lena Erika Ingridsson",
+      email: "lei@gmail.com",
+      representative: false,
+    },
+    {
+      name: "Shaz Eriser",
+      email: "erizer@gmail.com",
+      representative: false,
+    },
+    {
+      name: "Knut Angered",
+      email: "inte.an@gmail.com",
+      representative: false,
+    },
+    {
+      name: "Sven Svensson",
+      email: "Svensson@sverige.se",
+      representative: false,
+    },
+    {
+      name: "Katarina Björk",
+      email: "KB@gmail.com",
+      representative: false,
+    },
+  ];
+
+  users.map(async (user) => await userService.create(user));
 }
 
-seed().then(() => console.log("Elections seeded"))
-
-
+seed().then(() => console.log("Elections seeded"));

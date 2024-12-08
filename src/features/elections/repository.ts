@@ -1,6 +1,6 @@
 import { Db, electionService } from "./instance";
 import { elections } from "../../db/schema";
-import { desc, eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { CreateElection } from "./service";
 import { z } from "zod";
 
@@ -21,7 +21,7 @@ export function createRepository(db: Db) {
         .select()
         .from(elections)
         .limit(10)
-        .orderBy(desc(elections.createdAt));
+        .orderBy(asc(elections.createdAt));
     },
     get: async (id: string) => {
       return await db.select().from(elections).where(eq(elections.id, id));

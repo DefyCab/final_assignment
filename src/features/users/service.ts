@@ -14,5 +14,8 @@ export function createService(db: Db) {
     update: async (id: string) => {
       return await repository.update(id);
     },
+    create: async (user: any) => {
+      return await repository.create(user)
+    }
   };
 }

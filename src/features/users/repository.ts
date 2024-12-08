@@ -51,5 +51,12 @@ export function createRepository(db: Db) {
         console.log(error);
       }
     },
+    create: async (user: any) => {
+      try {
+        db.insert(representatives).values(user)
+      } catch (error) {
+        console.log(error);
+      }
+    },
   };
 }
