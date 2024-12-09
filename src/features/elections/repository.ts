@@ -35,7 +35,17 @@ export function createRepository(db: Db) {
       }
     },
     create: async (election: CreateElection) => {
-      return await db.insert(elections).values(election);
+      try {
+        const electionToValidate = ElectionsSchema.safeParse(election);
+
+        if (!electionToValidate.success) {
+          return console.log(electionToValidate.error.message);
+        }
+
+        return await db.insert(elections).values(election);
+      } catch (error) {
+        console.log(error);
+      }
     },
     update: async (id: string) => {
       try {

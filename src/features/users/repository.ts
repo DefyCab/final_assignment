@@ -45,8 +45,7 @@ export function createRepository(db: Db) {
     update: async (id: string) => {
       try {
         const user = await userService.get(id);
-        if (!user) return;
-
+        if (!user) return console.log("User not found");
         if (!user[0].representative === false) return;
         return await db
           .update(representatives)
@@ -65,8 +64,6 @@ export function createRepository(db: Db) {
         if (!userToValidate.success) {
           return console.log(userToValidate.error.message);
         }
-
-        console.log(userToValidate.success);
 
         await db.insert(representatives).values(user);
       } catch (error) {
