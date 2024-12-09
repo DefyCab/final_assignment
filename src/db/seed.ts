@@ -1,5 +1,4 @@
 import { electionService } from "@/features/elections/instance";
-import { representatives } from "./schema";
 import { userService } from "@/features/users/instance";
 
 async function seed() {
@@ -142,7 +141,7 @@ async function seed() {
     },
   ];
 
+  elections.map(async (election) => await electionService.create(election));
   users.map(async (user) => await userService.create(user));
 }
-
-seed().then(() => console.log("Elections seeded"));
+seed().then(() => console.log("Elections and Users seeded"));

@@ -1,5 +1,5 @@
 import { Db } from "./instance";
-import { createRepository } from "./repository";
+import { createRepository, CreateUser } from "./repository";
 
 export function createService(db: Db) {
   const repository = createRepository(db);
@@ -14,7 +14,7 @@ export function createService(db: Db) {
     update: async (id: string) => {
       return await repository.update(id);
     },
-    create: async (user: any) => {
+    create: async (user: CreateUser) => {
       return await repository.create(user)
     }
   };

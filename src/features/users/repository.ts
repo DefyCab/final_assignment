@@ -3,6 +3,7 @@ import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
+import exp from "constants";
 
 const RepresentativesSchema = z.object({
   id: z.string().uuid(),
@@ -10,6 +11,12 @@ const RepresentativesSchema = z.object({
   email: z.string().email(),
   representative: z.boolean(),
 });
+
+export type CreateUser = {
+  name: string;
+  email: string;
+  representative: boolean;
+};
 
 export type Representatives = z.infer<typeof RepresentativesSchema>;
 
@@ -51,9 +58,9 @@ export function createRepository(db: Db) {
         console.log(error);
       }
     },
-    create: async (user: any) => {
+    create: async (user: CreateUser) => {
       try {
-        db.insert(representatives).values(user)
+        await db.insert(representatives).values(user);
       } catch (error) {
         console.log(error);
       }
