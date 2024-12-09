@@ -3,7 +3,6 @@ import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
-import exp from "constants";
 
 const RepresentativesSchema = z.object({
   id: z.string().uuid(),
@@ -12,13 +11,14 @@ const RepresentativesSchema = z.object({
   representative: z.boolean(),
 });
 
-export type CreateUser = {
-  name: string;
-  email: string;
-  representative: boolean;
-};
+const CreateUserSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  representative: z.boolean(),
+});
 
 export type Representatives = z.infer<typeof RepresentativesSchema>;
+export type CreateUser = z.infer<typeof CreateUserSchema>;
 
 export function createRepository(db: Db) {
   return {
@@ -60,6 +60,14 @@ export function createRepository(db: Db) {
     },
     create: async (user: CreateUser) => {
       try {
+        const userToValidate = CreateUserSchema.safeParse(user);
+
+        if (!userToValidate.success) {
+          return console.log(userToValidate.error.message);
+        }
+
+        console.log(userToValidate.success);
+
         await db.insert(representatives).values(user);
       } catch (error) {
         console.log(error);
