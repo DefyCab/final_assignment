@@ -42,7 +42,7 @@ export function createRepository(db: Db) {
     },
     create: async (election: CreateElection) => {
       try {
-        const electionToValidate = ElectionsSchema.safeParse(election);
+        const electionToValidate = CreateElectionsSchema.safeParse(election);
 
         if (!electionToValidate.success) {
           return console.log(electionToValidate.error.message);
