@@ -8,6 +8,8 @@ export type Id = {
 export async function Election(id: Id) {
   const election = await electionService.get(id.id);
 
+  if (!election) return <p>No elections found</p>;
+
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
       <section className="w-full h-[calc(100vh-100px)] bg-base-300 mt-4 border-solid border-2 border-primary rounded ">

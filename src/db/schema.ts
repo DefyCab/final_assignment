@@ -13,7 +13,7 @@ import {
 export const elections = pgTable("elections", {
   id: uuid("id").primaryKey().defaultRandom(),
   issue: text("issue").notNull(),
-  options: jsonb("options").notNull(),
+  options: jsonb("options").$type<string[]>().notNull(),
   createdAt: timestamp("createdAt", { mode: "string" })
     .notNull()
     .default(sql`now()`),
@@ -31,4 +31,3 @@ export const votes = pgTable("votes", {
   user_id: uuid("id").primaryKey(),
   votes: integer(),
 });
-

@@ -5,6 +5,8 @@ import { Back } from "./back";
 export async function Nominate() {
   const users = await userService.getAll();
 
+  if (!users) return <p>No users found</p>;
+
   return (
     <>
       <NominateUserToRepresentative users={users} />
