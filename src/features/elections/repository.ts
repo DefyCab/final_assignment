@@ -1,7 +1,6 @@
 import { Db, electionService } from "./instance";
 import { elections } from "../../db/schema";
 import { asc, eq } from "drizzle-orm";
-import { CreateElection } from "./service";
 import { z } from "zod";
 
 const ElectionsSchema = z.object({
@@ -12,7 +11,14 @@ const ElectionsSchema = z.object({
   status: z.boolean(),
 });
 
+const CreateElectionsSchema = z.object({
+  issue: z.string(),
+  options: z.array(z.string()),
+  status: z.boolean(),
+});
+
 export type Election = z.infer<typeof ElectionsSchema>;
+export type CreateElection = z.infer<typeof CreateElectionsSchema>;
 
 export function createRepository(db: Db) {
   return {

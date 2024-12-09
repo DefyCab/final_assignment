@@ -1,12 +1,5 @@
 import { Db } from "./instance";
-import { createRepository } from "./repository";
-
-export type CreateElection = {
-  issue: string;
-  options: string[];
-  status: boolean;
-};
-
+import { CreateElection, createRepository } from "./repository";
 export function createService(db: Db) {
   const repository = createRepository(db);
 
