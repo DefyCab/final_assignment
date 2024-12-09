@@ -6,7 +6,7 @@ export function Navbar() {
     <>
       <nav className="navbar bg-primary justify-between w-full">
         <div className="flex justify-start">
-          <p className="text-warning font-bold">{user}</p>
+          <Link className="text-warning font-bold" href="\representatives\mypage\">{user}</Link>
         </div>
         <div>
           <Link className="p-2 hover:text-slate-200" href="\representatives\">
