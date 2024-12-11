@@ -1,4 +1,4 @@
-import { users } from "../../db/schema";
+import { users } from "./db";
 import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
@@ -32,10 +32,7 @@ export function createRepository(db: Db) {
     },
     get: async (id: string) => {
       try {
-        const result = await db
-          .select()
-          .from(users)
-          .where(eq(users.id, id));
+        const result = await db.select().from(users).where(eq(users.id, id));
 
         return result;
       } catch (error) {

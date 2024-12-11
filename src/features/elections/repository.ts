@@ -1,5 +1,5 @@
 import { Db, electionService } from "./instance";
-import { elections } from "../../db/schema";
+import { elections } from "./db";
 import { asc, eq } from "drizzle-orm";
 import { z } from "zod";
 
