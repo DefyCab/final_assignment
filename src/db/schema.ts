@@ -20,7 +20,7 @@ export const elections = pgTable("elections", {
   status: boolean().notNull(),
 });
 
-export const representatives = pgTable("representatives", {
+export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: varchar("name").notNull(),
   email: varchar("email", { length: 255 }).unique().notNull(),

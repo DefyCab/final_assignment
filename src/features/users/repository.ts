@@ -1,30 +1,30 @@
-import { representatives } from "../../db/schema";
+import { users } from "../../db/schema";
 import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
 import { eq } from "drizzle-orm";
 
-const RepresentativesSchema = z.object({
+const usersSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
   email: z.string().email(),
   representative: z.boolean(),
 });
 
-const CreateUserSchema = z.object({
+const createUserSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   representative: z.boolean(),
 });
 
-export type Representatives = z.infer<typeof RepresentativesSchema>;
-export type CreateUser = z.infer<typeof CreateUserSchema>;
+export type Representatives = z.infer<typeof usersSchema>;
+export type CreateUser = z.infer<typeof createUserSchema>;
 
 export function createRepository(db: Db) {
   return {
     getAll: async () => {
       try {
-        const result = await db.select().from(representatives);
+        const result = await db.select().from(users);
         return result;
       } catch (error) {
         console.log(error);
@@ -34,8 +34,8 @@ export function createRepository(db: Db) {
       try {
         const result = await db
           .select()
-          .from(representatives)
-          .where(eq(representatives.id, id));
+          .from(users)
+          .where(eq(users.id, id));
 
         return result;
       } catch (error) {
@@ -48,24 +48,24 @@ export function createRepository(db: Db) {
         if (!user) return console.log("User not found");
         if (!user[0].representative === false) return;
         return await db
-          .update(representatives)
+          .update(users)
           .set({
             ...(!user[0].representative && { representative: true }),
           })
-          .where(eq(representatives.id, id));
+          .where(eq(users.id, id));
       } catch (error) {
         console.log(error);
       }
     },
     create: async (user: CreateUser) => {
       try {
-        const userToValidate = CreateUserSchema.safeParse(user);
+        const userToValidate = createUserSchema.safeParse(user);
 
         if (!userToValidate.success) {
           return console.log(userToValidate.error.message);
         }
 
-        await db.insert(representatives).values(user);
+        await db.insert(users).values(user);
       } catch (error) {
         console.log(error);
       }

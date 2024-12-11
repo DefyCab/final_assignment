@@ -3,7 +3,7 @@ import { elections } from "../../db/schema";
 import { asc, eq } from "drizzle-orm";
 import { z } from "zod";
 
-const ElectionsSchema = z.object({
+const electionsSchema = z.object({
   id: z.string().uuid(),
   issue: z.string(),
   options: z.array(z.string()),
@@ -11,14 +11,14 @@ const ElectionsSchema = z.object({
   status: z.boolean(),
 });
 
-const CreateElectionsSchema = z.object({
+const createElectionsSchema = z.object({
   issue: z.string(),
   options: z.array(z.string()),
   status: z.boolean(),
 });
 
-export type Election = z.infer<typeof ElectionsSchema>;
-export type CreateElection = z.infer<typeof CreateElectionsSchema>;
+export type Election = z.infer<typeof electionsSchema>;
+export type CreateElection = z.infer<typeof createElectionsSchema>;
 
 export function createRepository(db: Db) {
   return {
@@ -42,7 +42,7 @@ export function createRepository(db: Db) {
     },
     create: async (election: CreateElection) => {
       try {
-        const electionToValidate = CreateElectionsSchema.safeParse(election);
+        const electionToValidate = createElectionsSchema.safeParse(election);
 
         if (!electionToValidate.success) {
           return console.log(electionToValidate.error.message);
