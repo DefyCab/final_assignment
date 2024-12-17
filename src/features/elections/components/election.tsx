@@ -44,9 +44,9 @@ export async function Election(id: Id) {
           <div className="m-2 mt-4 flex flex-row justify-between flex-wrap">
             <div className="w-40 h-80">
               <p className="font-semibold">Representatives</p>
-              {representatives.map((r) => (
-                <p key={r.id}>{r.name}</p>
-              ))}
+              {representatives
+                .map((r) => <p key={r.id}>{r.name}</p>)
+                .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold">Option voted for</p>
