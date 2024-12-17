@@ -7,8 +7,10 @@ export type Id = {
 
 export async function Election(id: Id) {
   const election = await electionService.get(id.id);
+  const representatives = await electionService.getRepresentatives();
 
   if (!election) return <p>No elections found</p>;
+  if (!representatives) return <p>No Representatives found</p>;
 
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
@@ -42,11 +44,9 @@ export async function Election(id: Id) {
           <div className="m-2 mt-4 flex flex-row justify-between flex-wrap">
             <div className="w-40 h-80">
               <p className="font-semibold">Representatives</p>
-              <p>Erik Lindros</p>
-              <p>Karin Zetterström</p>
-              <p>Bilal Andersson</p>
-              <p>Basim Hassan</p>
-              <p>Love Ericson</p>
+              {representatives.map((r) => (
+                <p key={r.id}>{r.name}</p>
+              ))}
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold">Option voted for</p>

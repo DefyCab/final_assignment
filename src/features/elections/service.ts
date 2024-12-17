@@ -1,5 +1,6 @@
 import { Db } from "./instance";
 import { CreateElection, createRepository } from "./repository";
+import { userService } from "../users/instance";
 export function createService(db: Db) {
   const repository = createRepository(db);
 
@@ -15,6 +16,9 @@ export function createService(db: Db) {
     },
     update: async (id: string) => {
       return await repository.update(id);
+    },
+    getRepresentatives: async () => {
+      return await userService.getAll();
     },
   };
 }
