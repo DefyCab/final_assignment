@@ -1,11 +1,5 @@
-import { Navbar } from "../../../features/users";
-import { Nominate } from "../../../features/users/components";
+import { Nominate } from "@/features";
 
 export default function Page() {
-  return (
-    <>
-      <Navbar />
-      <Nominate/>
-    </>
-  );
+  return <Nominate />;
 }

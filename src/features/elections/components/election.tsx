@@ -55,6 +55,8 @@ export async function Election(id: Id) {
               <p>One</p>
               <p>Two</p>
               <p>Two</p>
+              <p>Three</p>
+              <p>One</p>
             </div>
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
@@ -63,6 +65,8 @@ export async function Election(id: Id) {
               <p>145</p>
               <p>24</p>
               <p>320</p>
+              <p>33</p>
+              <p>1220</p>
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold text-right">Agreement Rate</p>
@@ -71,6 +75,8 @@ export async function Election(id: Id) {
               <p className="text-right">89 %</p>
               <p className="text-right">25 %</p>
               <p className="text-right">60 %</p>
+              <p className="text-right">15 %</p>
+              <p className="text-right">80 %</p>
             </div>
           </div>
           <div className="flex justify-center">

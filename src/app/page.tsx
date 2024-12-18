@@ -1,4 +1,4 @@
-import { Navbar } from "../features/elections";
+import { Navbar } from "@/ui";
 
 export default function Home() {
   return <Navbar />;
