@@ -24,11 +24,16 @@ export function createRepository(db: Db) {
   return {
     getAll: async () => {
       try {
-        return await db
+        const data = await db
           .select()
           .from(elections)
           .limit(10)
           .orderBy(asc(elections.createdAt));
+
+        return {
+          data,
+          tags: ["elections"],
+        };
       } catch (error) {
         console.log(error);
       }

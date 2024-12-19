@@ -29,7 +29,9 @@ export async function Election(id: Id) {
             <div>
               {election.map((e) =>
                 e.options?.map((options) => (
-                  <p className="text-sm ml-2">{options}</p>
+                  <p key={e.id} className="text-sm ml-2">
+                    {options}
+                  </p>
                 ))
               )}
             </div>

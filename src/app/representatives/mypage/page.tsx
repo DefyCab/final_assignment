@@ -1,5 +1,4 @@
 export default async function MyPage() {
-  const user = "Love Ericson";
   return (
     <section>
       <div className="flex flex-col">
