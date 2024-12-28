@@ -24,8 +24,17 @@ export function createRepository(db: Db) {
   return {
     getAll: async () => {
       try {
-        const result = await db.select().from(users);
-        return result;
+        const data = await db.select().from(users);
+
+        const usersArray = z.array(usersSchema);
+
+        const usersToValidate = usersArray.safeParse(data);
+
+        if (!usersToValidate.success) {
+          console.log(usersToValidate.error.message);
+        }
+
+        return usersToValidate.data;
       } catch (error) {
         console.log(error);
       }
