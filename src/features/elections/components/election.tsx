@@ -29,8 +29,10 @@ export async function Election(id: Id) {
           <div className="flex justify-between">
             <div>
               {election.map((e) =>
-                e.options?.map((options) => (
-                  <p className="text-sm ml-2">{options}</p>
+                e.options?.map((options, index) => (
+                  <p key={index} className="text-sm ml-2">
+                    {options}
+                  </p>
                 ))
               )}
             </div>
@@ -84,7 +86,11 @@ export async function Election(id: Id) {
             <form action={closeElection}>
               {election.map((e) =>
                 e.status ? (
-                  <button key={e.id} type="submit" className="btn btn-accent mr-2">
+                  <button
+                    key={e.id}
+                    type="submit"
+                    className="btn btn-accent mr-2"
+                  >
                     Close Election
                   </button>
                 ) : (
