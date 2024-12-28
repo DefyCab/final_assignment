@@ -29,7 +29,7 @@ export async function Election(id: Id) {
             <div>
               {election.map((e) =>
                 e.options?.map((options) => (
-                  <p key={e.id} className="text-sm ml-2">
+                  <p className="text-sm ml-2">
                     {options}
                   </p>
                 ))

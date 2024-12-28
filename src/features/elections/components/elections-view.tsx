@@ -1,12 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
-import type { Election } from "../repository"
+import type { Election } from "../repository";
 
 type Props = {
   elections: Election[];
 };
 
-export function ElectionsCard({ elections }: Props) {
+export function ElectionsView({ elections }: Props) {
   const router = useRouter();
 
   return (
