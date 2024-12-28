@@ -6,8 +6,8 @@ import { electionService } from "./instance";
 
 export async function closeElection(formData: FormData) {
   const id = formData.get("id") as string;
-  revalidateTag("elections");
   await electionService.update(id);
+  revalidateTag("elections");
   redirect("/elections");
 }
 
@@ -27,7 +27,7 @@ export async function createElectionAction(formData: FormData) {
     throw new Error("No content");
   }
 
-  revalidateTag("elections");
-
   await electionService.create(election);
+  revalidateTag("elections");
+  redirect("/elections");
 }

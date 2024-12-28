@@ -1,6 +1,6 @@
 import { Db, electionService } from "./instance";
 import { elections } from "./db";
-import { asc, eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
 
 const electionsSchema = z.object({
@@ -27,8 +27,7 @@ export function createRepository(db: Db) {
         const data = await db
           .select()
           .from(elections)
-          .limit(10)
-          .orderBy(asc(elections.createdAt));
+          .orderBy(desc(elections.createdAt));
 
         return {
           data,
