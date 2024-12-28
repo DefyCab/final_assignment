@@ -29,8 +29,15 @@ export function createRepository(db: Db) {
           .from(elections)
           .orderBy(desc(elections.createdAt));
 
+        const electionsArray = z.array(electionsSchema);
+
+        const electionsToValidate = electionsArray.safeParse(data);
+
+        if (!electionsToValidate.success) {
+          console.log(electionsToValidate.error.message);
+        }
         return {
-          data,
+          data: electionsToValidate.data,
           tags: ["elections"],
         };
       } catch (error) {
@@ -49,7 +56,7 @@ export function createRepository(db: Db) {
         const electionToValidate = createElectionsSchema.safeParse(election);
 
         if (!electionToValidate.success) {
-          return console.log(electionToValidate.error.message);
+          console.log(electionToValidate.error.message);
         }
 
         return await db.insert(elections).values(election);
