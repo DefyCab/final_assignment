@@ -15,6 +15,8 @@ export async function Election(id: Id) {
   if (!representatives) return <p>No Representatives found</p>;
   if (!voteData) return <p>No VoteData found</p>;
 
+  const numberAsWords = ["One", "Two", "Three", "Four", "Five"];
+
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
       <section className="w-full h-[calc(100vh-100px)] bg-base-300 mt-4 border-solid border-2 border-primary rounded ">
@@ -54,9 +56,10 @@ export async function Election(id: Id) {
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
-              <p className="font-semibold">Option voted for</p>
               {voteData
-                .map((vd) => <p key={vd.id}>{vd.option_chosen}</p>)
+                .map((vd) => (
+                  <p key={vd.id}>{numberAsWords[vd.option_chosen - 1]}</p>
+                ))
                 .slice(0, 7)}
             </div>
             <div className="w-52 h-80">
