@@ -1,7 +1,7 @@
 import { electionService } from "@/features/elections/instance";
 import { userService } from "@/features/users/instance";
 
-async function seed() {
+async function seedElectionsAndUsers() {
   const elections = [
     {
       issue: "Wildlife preservation",
@@ -141,18 +141,19 @@ async function seed() {
     },
   ];
 
-  elections.map(async (election) => await electionService.create(election));
-  users.map(async (user) => await userService.create(user));
+  await Promise.all(
+    elections.map(async (election) => await electionService.create(election))
+  );
+  await Promise.all(users.map(async (user) => await userService.create(user)));
 }
-await seed().then(() => console.log("Elections and Users seeded"));
 
 async function seedVoteData() {
   const users = await userService.getAll();
   if (!users) return console.log("Seeding voteData went wrong");
 
-  const usersId = users
-    .filter((user) => user.representative === true)
-    .map((user) => user.id);
+  const filteredUsers = users.filter((user) => user.representative === true);
+
+  const usersId = filteredUsers.map((user) => user.id);
 
   if (!usersId) return console.log("Seeding voteData went wrong");
 
@@ -196,4 +197,11 @@ async function seedVoteData() {
   voteData.map(async (voteData) => await userService.createVoteData(voteData));
 }
 
-await seedVoteData().then(() => console.log("VoteData seeded"));
+async function seed() {
+  await seedElectionsAndUsers().then(() =>
+    console.log("Elections and Users seeded")
+  );
+  await seedVoteData().then(() => console.log("VoteData seeded"));
+}
+
+seed();
