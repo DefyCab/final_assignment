@@ -56,6 +56,7 @@ export async function Election(id: Id) {
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
+              <p className="font-semibold">Option voted for</p>
               {voteData
                 .map((vd) => (
                   <p key={vd.id}>{numberAsWords[vd.option_chosen - 1]}</p>
@@ -64,13 +65,7 @@ export async function Election(id: Id) {
             </div>
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
-              <p>1001</p>
-              <p>398</p>
-              <p>145</p>
-              <p>24</p>
-              <p>320</p>
-              <p>33</p>
-              <p>1220</p>
+              {voteData.map((vd) => <p key={vd.id}>{vd.votes}</p>).slice(0, 7)}
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold text-right">Agreement Rate</p>
