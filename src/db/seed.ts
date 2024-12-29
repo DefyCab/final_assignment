@@ -160,37 +160,30 @@ async function seedVoteData() {
   const voteData = [
     {
       votes: 1234,
-      option_chosen: 1,
       user_id: usersId[0],
     },
     {
       votes: 1001,
-      option_chosen: 2,
       user_id: usersId[1],
     },
     {
       votes: 145,
-      option_chosen: 3,
       user_id: usersId[2],
     },
     {
       votes: 456,
-      option_chosen: 3,
       user_id: usersId[3],
     },
     {
       votes: 44,
-      option_chosen: 2,
       user_id: usersId[4],
     },
     {
       votes: 3456,
-      option_chosen: 1,
       user_id: usersId[5],
     },
     {
       votes: 2098,
-      option_chosen: 2,
       user_id: usersId[6],
     },
   ];

@@ -21,7 +21,6 @@ const voteDataSchema = z.object({
   id: z.string(),
   user_id: z.string().uuid(),
   votes: z.number(),
-  option_chosen: z.number(),
 });
 
 export type Representatives = z.infer<typeof usersSchema>;
@@ -29,7 +28,6 @@ export type CreateUser = z.infer<typeof createUserSchema>;
 export type VoteData = {
   user_id: string;
   votes: number;
-  option_chosen: number;
 };
 
 export function createRepository(db: Db) {

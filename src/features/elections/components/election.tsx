@@ -57,11 +57,13 @@ export async function Election(id: Id) {
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold">Option voted for</p>
-              {voteData
-                .map((vd) => (
-                  <p key={vd.id}>{numberAsWords[vd.option_chosen - 1]}</p>
-                ))
-                .slice(0, 7)}
+              <p>Two</p>
+              <p>Three</p>
+              <p>One</p>
+              <p>Two</p>
+              <p>Two</p>
+              <p>Three</p>
+              <p>One</p>
             </div>
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
