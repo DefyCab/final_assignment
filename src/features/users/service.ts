@@ -17,7 +17,7 @@ export function createService(db: Db) {
     create: async (user: CreateUser) => {
       return await repository.create(user);
     },
-    getVoteData: async (voteData: VoteData) => {
+    getVoteData: async () => {
       return await repository.getVoteData();
     },
   };

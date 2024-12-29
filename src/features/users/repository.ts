@@ -1,4 +1,4 @@
-import { users } from "./db";
+import { users, votes } from "./db";
 import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
@@ -17,8 +17,16 @@ const createUserSchema = z.object({
   representative: z.boolean(),
 });
 
+const voteDataSchema = z.object({
+  id: z.string(),
+  user_id: z.string().uuid(),
+  votes: z.number(),
+  option_chosen: z.number(),
+});
+
 export type Representatives = z.infer<typeof usersSchema>;
 export type CreateUser = z.infer<typeof createUserSchema>;
+export type VoteData = z.infer<typeof voteDataSchema>;
 
 export function createRepository(db: Db) {
   return {
@@ -72,6 +80,23 @@ export function createRepository(db: Db) {
         }
 
         await db.insert(users).values(user);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    getVoteData: async () => {
+      try {
+        const voteData = await db.select().from(votes);
+
+        const voteDataArray = z.array(voteDataSchema);
+
+        const voteDataToValidate = voteDataArray.safeParse(voteData);
+
+        if (!voteDataToValidate.success) {
+          console.log(voteDataToValidate.error.message);
+        }
+
+        return voteDataToValidate.data;
       } catch (error) {
         console.log(error);
       }
