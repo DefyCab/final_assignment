@@ -48,7 +48,7 @@ export async function Election(id: Id) {
             <div className="w-40 h-80">
               <p className="font-semibold">Representatives</p>
               {representatives
-                .map((r) => <p key={r.id}>{r.name}</p>)
+                .map((rep) => <p key={rep.id}>{rep.name}</p>)
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
