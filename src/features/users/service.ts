@@ -1,5 +1,5 @@
 import { Db } from "./instance";
-import { createRepository, CreateUser } from "./repository";
+import { createRepository, CreateUser, VoteData } from "./repository";
 
 export function createService(db: Db) {
   const repository = createRepository(db);
@@ -19,6 +19,9 @@ export function createService(db: Db) {
     },
     getVoteData: async () => {
       return await repository.getVoteData();
+    },
+    createVoteData: async (voteData: VoteData) => {
+      return await repository.createVoteData(voteData);
     },
   };
 }

@@ -26,7 +26,11 @@ const voteDataSchema = z.object({
 
 export type Representatives = z.infer<typeof usersSchema>;
 export type CreateUser = z.infer<typeof createUserSchema>;
-export type VoteData = z.infer<typeof voteDataSchema>;
+export type VoteData = {
+  user_id: string;
+  votes: number;
+  option_chosen: number;
+};
 
 export function createRepository(db: Db) {
   return {
@@ -100,6 +104,9 @@ export function createRepository(db: Db) {
       } catch (error) {
         console.log(error);
       }
+    },
+    createVoteData: async (voteData: VoteData) => {
+      await db.insert(votes).values(voteData);
     },
   };
 }

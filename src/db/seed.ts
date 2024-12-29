@@ -107,17 +107,17 @@ async function seed() {
     {
       name: "Love Ericson",
       email: "love.ericson@gmail.com",
-      representative: false,
+      representative: true,
     },
     {
       name: "Trevor Seagrass",
       email: "trevor.seagrass@gmail.com",
-      representative: false,
+      representative: true,
     },
     {
       name: "Lena Erika Ingridsson",
       email: "lei@gmail.com",
-      representative: false,
+      representative: true,
     },
     {
       name: "Shaz Eriser",
@@ -144,4 +144,56 @@ async function seed() {
   elections.map(async (election) => await electionService.create(election));
   users.map(async (user) => await userService.create(user));
 }
-seed().then(() => console.log("Elections and Users seeded"));
+await seed().then(() => console.log("Elections and Users seeded"));
+
+async function seedVoteData() {
+  const users = await userService.getAll();
+  if (!users) return console.log("Seeding voteData went wrong");
+
+  const usersId = users
+    .filter((user) => user.representative === true)
+    .map((user) => user.id);
+
+  if (!usersId) return console.log("Seeding voteData went wrong");
+
+  const voteData = [
+    {
+      votes: 1234,
+      option_chosen: 1,
+      user_id: usersId[0],
+    },
+    {
+      votes: 1001,
+      option_chosen: 2,
+      user_id: usersId[1],
+    },
+    {
+      votes: 145,
+      option_chosen: 3,
+      user_id: usersId[2],
+    },
+    {
+      votes: 456,
+      option_chosen: 3,
+      user_id: usersId[3],
+    },
+    {
+      votes: 44,
+      option_chosen: 2,
+      user_id: usersId[4],
+    },
+    {
+      votes: 3456,
+      option_chosen: 1,
+      user_id: usersId[5],
+    },
+    {
+      votes: 2098,
+      option_chosen: 2,
+      user_id: usersId[6],
+    },
+  ];
+  voteData.map(async (voteData) => await userService.createVoteData(voteData));
+}
+
+await seedVoteData().then(() => console.log("VoteData seeded"));
