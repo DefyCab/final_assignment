@@ -20,7 +20,9 @@ export function createService(db: Db) {
     getRepresentatives: async () => {
       const users = await userService.getAll();
 
-      const representatives = users?.filter((user) => user.representative === true)
+      if(!users) return 
+      
+      const representatives = users.filter((user) => user.representative === true)
 
       return representatives
     },
