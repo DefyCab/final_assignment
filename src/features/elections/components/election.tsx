@@ -9,6 +9,7 @@ export type Id = {
 export async function Election(id: Id) {
   const election = await electionService.get(id.id);
   const representatives = await electionService.getRepresentatives();
+  const voteData = await electionService.getVoteData()
 
   if (!election) return <p>No elections found</p>;
   if (!representatives) return <p>No Representatives found</p>;
@@ -53,13 +54,9 @@ export async function Election(id: Id) {
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold">Option voted for</p>
-              <p>Two</p>
-              <p>Three</p>
-              <p>One</p>
-              <p>Two</p>
-              <p>Two</p>
-              <p>Three</p>
-              <p>One</p>
+              {voteData
+                .map((vd) => <p key={vd.id}>{vd.option_chosen}</p>)
+                .slice(0, 7)}
             </div>
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>

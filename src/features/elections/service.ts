@@ -20,11 +20,16 @@ export function createService(db: Db) {
     getRepresentatives: async () => {
       const users = await userService.getAll();
 
-      if(!users) return 
-      
-      const representatives = users.filter((user) => user.representative === true)
+      if (!users) return;
 
-      return representatives
+      const representatives = users.filter(
+        (user) => user.representative === true
+      );
+
+      return representatives;
+    },
+    getVoteData: async () => {
+      return await userService.getVoteData();
     },
   };
 }

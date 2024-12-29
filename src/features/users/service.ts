@@ -9,13 +9,16 @@ export function createService(db: Db) {
       return await repository.getAll();
     },
     get: async (id: string) => {
-      return await repository.get(id)
+      return await repository.get(id);
     },
     update: async (id: string) => {
       return await repository.update(id);
     },
     create: async (user: CreateUser) => {
-      return await repository.create(user)
-    }
+      return await repository.create(user);
+    },
+    getVoteData: async (voteData: VoteData) => {
+      return await repository.getVoteData();
+    },
   };
 }
