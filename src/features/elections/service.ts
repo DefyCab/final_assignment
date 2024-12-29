@@ -18,7 +18,11 @@ export function createService(db: Db) {
       return await repository.update(id);
     },
     getRepresentatives: async () => {
-      return await userService.getAll();
+      const users = await userService.getAll();
+
+      const representatives = users?.filter((user) => user.representative === true)
+
+      return representatives
     },
   };
 }
