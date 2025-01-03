@@ -15,8 +15,6 @@ export async function Election(id: Id) {
   if (!representatives) return <p>No Representatives found</p>;
   if (!voteData) return <p>No VoteData found</p>;
 
-  const numberAsWords = ["One", "Two", "Three", "Four", "Five"];
-
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
       <section className="w-full h-[calc(100vh-100px)] bg-base-300 mt-4 border-solid border-2 border-primary rounded ">
