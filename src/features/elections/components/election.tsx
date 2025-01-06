@@ -86,9 +86,15 @@ export async function Election(id: Id) {
               <p className="text-right">80 %</p>
             </div>
           </div>
-          <div className="flex justify-start">
+          <div className="flex justify-start flex-col">
             <p className="font-semibold">Winning choice</p>
-            <p className="font-semibold ml-4">Number of votes</p>
+            {election.map((e) => (
+              <p className="text-red-700" key={e.id}>
+                {e.winning_choice !== null ? e.options[e.winning_choice] : ""}
+              </p>
+            ))}
+
+            <p className="font-semibold">Number of votes</p>
           </div>
           <div className="flex justify-center">
             <form action={closeElection}>
