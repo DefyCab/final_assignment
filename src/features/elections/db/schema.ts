@@ -17,3 +17,10 @@ export const elections = pgTable("elections", {
     .default(sql`now()`),
   status: boolean().notNull(),
 });
+
+// id: election id
+// issue: what the election is regarding
+// options: available options for representatives to vote for
+// createdAt: when the election was created
+// status: is the election ongoing or closed.
+// winningChoice: which option recived the most votes.
