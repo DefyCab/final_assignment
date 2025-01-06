@@ -64,7 +64,7 @@ export function createRepository(db: Db) {
         console.log(error);
       }
     },
-    update: async (id: string) => {
+    update: async (id: string, winningChoice: number) => {
       try {
         const election = await electionService.get(id);
 
@@ -77,7 +77,8 @@ export function createRepository(db: Db) {
         return await db
           .update(elections)
           .set({
-            ...(election[0].status && { status: false }),
+            status: false,
+            winning_choice: winningChoice,
           })
           .where(eq(elections.id, id));
       } catch (error) {

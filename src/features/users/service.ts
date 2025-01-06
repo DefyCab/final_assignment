@@ -23,5 +23,8 @@ export function createService(db: Db) {
     createVoteData: async (voteData: VoteData) => {
       return await repository.createVoteData(voteData);
     },
+    getWinningChoice: async () => {
+      return await repository.getWinningChoice()
+    }
   };
 }

@@ -6,10 +6,16 @@ import { electionService } from "./instance";
 
 export async function closeElection(formData: FormData) {
   const id = formData.get("id") as string;
-  await electionService.update(id);
+  const winningChoice = 1;
+  await electionService.update(id, winningChoice);
 
   //calculate winning choice
-  
+
+  // get votes from userService votes table
+  // which option did representative choose
+  // get representatives that choose options
+  // add up the sum of votes per representative
+  // check biggest number and send as winning choice
 
   revalidateTag("elections");
   redirect("/elections");

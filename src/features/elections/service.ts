@@ -14,8 +14,8 @@ export function createService(db: Db) {
     create: async (election: CreateElection) => {
       return await repository.create(election);
     },
-    update: async (id: string) => {
-      return await repository.update(id);
+    update: async (id: string, winningChoice: number) => {
+      return await repository.update(id, winningChoice);
     },
     getRepresentatives: async () => {
       const users = await userService.getAll();
@@ -30,6 +30,9 @@ export function createService(db: Db) {
     },
     getVoteData: async () => {
       return await userService.getVoteData();
+    },
+    getWinningChoice: async () => {
+      return await userService.getWinningChoice();
     },
   };
 }

@@ -106,5 +106,8 @@ export function createRepository(db: Db) {
     createVoteData: async (voteData: VoteData) => {
       await db.insert(votes).values(voteData);
     },
+    getWinningChoice: async () => {
+      await db.select().from(users);
+    },
   };
 }
