@@ -1,4 +1,4 @@
-import { Election } from "../../../../features/elections";
+import { Election } from "@/features/elections";
 
 type Params = {
   params: Promise<{ id: string }>;
