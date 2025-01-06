@@ -12,6 +12,9 @@ export function Elections({ elections }: Props) {
   const createElection = () => {
     redirect("/elections/create");
   };
+  const registerOpinion = () => {
+    redirect("elections/register");
+  };
   return (
     <>
       <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
@@ -22,7 +25,9 @@ export function Elections({ elections }: Props) {
         <button className="btn btn-accent" onClick={createElection}>
           Create Election
         </button>
-        <button className="btn btn-accent">Register Opinion</button>
+        <button className="btn btn-accent" onClick={registerOpinion}>
+          Register Opinion
+        </button>
       </div>
     </>
   );
