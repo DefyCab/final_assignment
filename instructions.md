@@ -22,7 +22,7 @@ The app should help us understand how well the public voters agrees with the rep
 
 ### Representative voters management
 
-1. There should be a list of registered representative voters that the public can place their vote on.
+1. There should be a list of registered representative voters that the public can place their vote on. 
 2. Representatives can be added to the list. They should have a name and email. Email needs to be unique.
 
 ### Elections management

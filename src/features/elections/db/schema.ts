@@ -23,4 +23,5 @@ export const elections = pgTable("elections", {
 // options: available options for representatives to vote for
 // createdAt: when the election was created
 // status: is the election ongoing or closed.
-// winningChoice: which option recived the most votes.
+// winning_choice: which option recived the most votes.
+// number_of_votes_per_option: representatives votes placed on each option

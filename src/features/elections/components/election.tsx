@@ -9,11 +9,17 @@ export type Id = {
 export async function Election(id: Id) {
   const election = await electionService.get(id.id);
   const representatives = await electionService.getRepresentatives();
-  const voteData = await electionService.getVoteData();
+  const votes = await electionService.getVoteData();
 
   if (!election) return <p>No elections found</p>;
   if (!representatives) return <p>No Representatives found</p>;
-  if (!voteData) return <p>No VoteData found</p>;
+  if (!votes) return <p>No VoteData found</p>;
+
+  const sortedRepresentatives = representatives.sort((a, b) =>
+    a.id.localeCompare(b.id)
+  );
+
+  const sortedVotes = votes.sort((a, b) => a.user_id.localeCompare(b.user_id));
 
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
@@ -49,7 +55,7 @@ export async function Election(id: Id) {
           <div className="m-2 mt-4 flex flex-row justify-between flex-wrap">
             <div className="w-40 h-80">
               <p className="font-semibold">Representatives</p>
-              {representatives
+              {sortedRepresentatives
                 .map((rep) => <p key={rep.id}>{rep.name}</p>)
                 .slice(0, 7)}
             </div>
@@ -65,7 +71,9 @@ export async function Election(id: Id) {
             </div>
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
-              {voteData.map((vd) => <p key={vd.id}>{vd.votes}</p>).slice(0, 7)}
+              {sortedVotes
+                .map((votes) => <p key={votes.user_id}>{votes.votes}</p>)
+                .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold text-right">Agreement Rate</p>
