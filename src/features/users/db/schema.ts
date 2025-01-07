@@ -1,4 +1,11 @@
-import { pgTable, boolean, uuid, varchar, integer } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  boolean,
+  uuid,
+  varchar,
+  integer,
+  jsonb,
+} from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -13,7 +20,11 @@ export const votes = pgTable("votes", {
   votes: integer("votes"),
 });
 
-
+export const election_choices = pgTable("election_choices", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  user_id: uuid("user_id").notNull(),
+  election_choices: jsonb("election_choices").notNull(),
+});
 // users scehma
 
 // id: id of that user
