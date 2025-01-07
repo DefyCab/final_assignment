@@ -28,8 +28,8 @@ export function createService(db: Db) {
 
       return representatives;
     },
-    getVoteData: async () => {
-      return await userService.getVoteData();
+    getVotes: async () => {
+      return await userService.getVotes();
     },
     getWinningChoice: async () => {
       return await userService.getWinningChoice();

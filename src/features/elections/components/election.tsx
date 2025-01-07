@@ -9,7 +9,7 @@ export type Id = {
 export async function Election(id: Id) {
   const election = await electionService.get(id.id);
   const representatives = await electionService.getRepresentatives();
-  const votes = await electionService.getVoteData();
+  const votes = await electionService.getVotes();
 
   if (!election) return <p>No elections found</p>;
   if (!representatives) return <p>No Representatives found</p>;

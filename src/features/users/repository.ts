@@ -86,7 +86,7 @@ export function createRepository(db: Db) {
         console.log(error);
       }
     },
-    getVoteData: async () => {
+    getVotes: async () => {
       try {
         const voteData = await db.select().from(votes);
 
