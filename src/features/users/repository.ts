@@ -29,6 +29,10 @@ export type VoteData = {
   user_id: string;
   votes: number;
 };
+export type ElectionChoices = {
+  choice: number;
+  election_id: string;
+};
 
 export function createRepository(db: Db) {
   return {
@@ -109,14 +113,30 @@ export function createRepository(db: Db) {
     getWinningChoice: async () => {
       await db.select().from(users);
     },
-    getChoicesOnElections: async (id: string) => {
-      const data = await db.select().from(election_choices);
+    getChoicesOnAllElections: async (id: string) => {
+      const data = await db
+        .select()
+        .from(election_choices)
+        .where(eq(election_choices.user_id, id));
 
       const electionsChoices = data.flatMap(
         (representative) => representative.election_choices
       );
 
-      return electionsChoices;
+      return electionsChoices
+    },
+    getChoiceOnElection: async (user_id: string, id: string) => {
+      const electionChoices = await userService.getChoicesOnAllElections(
+        user_id
+      );
+
+      const choices = electionChoices.find(
+        (c: Choices) => c.election_id === id
+      );
+
+      const choice = choices.choice;
+
+      return choice;
     },
   };
 }

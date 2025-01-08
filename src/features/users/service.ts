@@ -24,10 +24,13 @@ export function createService(db: Db) {
       return await repository.createVoteData(voteData);
     },
     getWinningChoice: async () => {
-      return await repository.getWinningChoice()
+      return await repository.getWinningChoice();
     },
-    getChoicesOnElections: async (id: string) => {
-      return await repository.getChoicesOnElections(id)
-    }
+    getChoicesOnAllElections: async (id: string) => {
+      return await repository.getChoicesOnAllElections(id);
+    },
+    getChoiceOnElection: async (user_id: string, id: string) => {
+      return await repository.getChoiceOnElection(user_id, id);
+    },
   };
 }

@@ -8,15 +8,11 @@ export async function closeElection(formData: FormData) {
   const id = formData.get("id") as string;
 
   const representatives = await electionService.getRepresentatives();
-  const electionChoices = await electionService.getChoicesOnElections(id);
+  const electionChoices = await electionService.getChoicesOnAllElections(
+    "d79eeb99-9eb5-45f2-b5b6-42789214a71f"
+  );
 
-  console.log(representatives);
   console.log(electionChoices);
-
-  [
-    { choice: 1, election_id: "38989f30-298c-4663-9a1c-8487113f0fdd" },
-    { choice: 2, election_id: "638f818b-9a5f-4fd9-b5a4-ff5fa546cf57" },
-  ];
 
   //calculate winning choice
 

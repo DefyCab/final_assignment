@@ -34,8 +34,11 @@ export function createService(db: Db) {
     getWinningChoice: async () => {
       return await userService.getWinningChoice();
     },
-    getChoicesOnElections: async (id: string) => {
-      return await userService.getChoicesOnElections(id);
+    getChoicesOnAllElections: async (id: string) => {
+      return await userService.getChoicesOnAllElections(id);
+    },
+    getChoiceOnElection: async (user_id: string, id: string) => {
+      return await userService.getChoiceOnElection(user_id, id);
     },
   };
 }
