@@ -12,8 +12,8 @@ export async function Election(id: Id) {
   const votes = await electionService.getVotes();
 
   if (!election) return <p>No elections found</p>;
-  if (!representatives) return <p>No Representatives found</p>;
-  if (!votes) return <p>No VoteData found</p>;
+  if (!representatives) return <p>No representatives found</p>;
+  if (!votes) return <p>No votes found</p>;
 
   const sortedRepresentatives = representatives.sort((a, b) =>
     a.id.localeCompare(b.id)
@@ -94,7 +94,7 @@ export async function Election(id: Id) {
               </p>
             ))}
 
-            <p className="font-semibold">Number of votes</p>
+            <p className="font-semibold">Total votes on Winning Choice</p>
           </div>
           <div className="flex justify-center">
             <form action={closeElection}>

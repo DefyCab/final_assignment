@@ -13,6 +13,11 @@ export async function closeElection(formData: FormData) {
   console.log(representatives);
   console.log(electionChoices);
 
+  [
+    { choice: 1, election_id: "38989f30-298c-4663-9a1c-8487113f0fdd" },
+    { choice: 2, election_id: "638f818b-9a5f-4fd9-b5a4-ff5fa546cf57" },
+  ];
+
   //calculate winning choice
 
   // get votes from userService votes table
