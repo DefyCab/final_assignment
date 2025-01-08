@@ -3,11 +3,15 @@
 import { redirect } from "next/navigation";
 import { revalidateTag } from "next/cache";
 import { electionService } from "./instance";
+import { userService } from "../users/instance";
 
 export async function closeElection(formData: FormData) {
   const id = formData.get("id") as string;
-  const winningChoice = 1;
-  await electionService.update(id, winningChoice);
+
+  const election = await electionService.get(id);
+  const users = await electionService.getRepresentatives()
+
+  
 
   //calculate winning choice
 
@@ -16,6 +20,9 @@ export async function closeElection(formData: FormData) {
   // get representatives that choose options
   // add up the sum of votes per representative
   // check biggest number and send as winning choice
+
+  const winningChoice = 1;
+  await electionService.update(id, winningChoice);
 
   revalidateTag("elections");
   redirect("/elections");
