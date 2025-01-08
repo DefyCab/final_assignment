@@ -1,4 +1,4 @@
-import { users, votes } from "./db";
+import { users, votes, election_choices } from "./db";
 import { userService } from "./instance";
 import type { Db } from "./instance";
 import { z } from "zod";
@@ -108,6 +108,15 @@ export function createRepository(db: Db) {
     },
     getWinningChoice: async () => {
       await db.select().from(users);
+    },
+    getChoicesOnElections: async (id: string) => {
+      const data = await db.select().from(election_choices);
+
+      const electionsChoices = data.flatMap(
+        (representative) => representative.election_choices
+      );
+
+      return electionsChoices;
     },
   };
 }

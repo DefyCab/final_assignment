@@ -3,15 +3,15 @@
 import { redirect } from "next/navigation";
 import { revalidateTag } from "next/cache";
 import { electionService } from "./instance";
-import { userService } from "../users/instance";
 
 export async function closeElection(formData: FormData) {
   const id = formData.get("id") as string;
 
-  const election = await electionService.get(id);
-  const users = await electionService.getRepresentatives()
+  const representatives = await electionService.getRepresentatives();
+  const electionChoices = await electionService.getChoicesOnElections(id);
 
-  
+  console.log(representatives);
+  console.log(electionChoices);
 
   //calculate winning choice
 

@@ -25,6 +25,9 @@ export function createService(db: Db) {
     },
     getWinningChoice: async () => {
       return await repository.getWinningChoice()
+    },
+    getChoicesOnElections: async (id: string) => {
+      return await repository.getChoicesOnElections(id)
     }
   };
 }
