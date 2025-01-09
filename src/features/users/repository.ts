@@ -29,6 +29,10 @@ export type VoteData = {
   user_id: string;
   votes: number;
 };
+export type ElectionChoice = {
+  choice: number;
+  election_id: string;
+};
 
 export function createRepository(db: Db) {
   return {
@@ -128,22 +132,26 @@ export function createRepository(db: Db) {
 
       return electionsChoices;
     },
-
-    getChoiceOnElection: async (user_id: string, id: string) => {
+    getChoiceOnElection: async (
+      user_id: string,
+      id: string
+    ): Promise<number> => {
       const data = await db
         .select()
         .from(election_choices)
         .where(eq(election_choices.user_id, user_id));
 
-      const electionChoices = data.flatMap(
-        (representative) => representative.election_choices
-      );
+      const electionChoices = data.flatMap((row) => row.election_choices);
 
-      const choices = electionChoices.find(
+      const choice = electionChoices.find(
         (choice) => choice.election_id === id
       );
 
-      return choices.choice;
+      if (!choice) {
+        throw new Error("Error reading database");
+      }
+
+      return choice.choice;
     },
   };
 }

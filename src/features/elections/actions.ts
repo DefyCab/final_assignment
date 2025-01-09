@@ -8,22 +8,6 @@ export async function closeElection(formData: FormData) {
   const id = formData.get("id") as string;
 
   const representatives = await electionService.getRepresentatives();
-  // const electionChoices = await electionService.getChoicesOnAllElections(
-  //   "d79eeb99-9eb5-45f2-b5b6-42789214a71f"
-  // );
-
-  // const choice = await electionService.getChoiceOnElection(
-  //   "d79eeb99-9eb5-45f2-b5b6-42789214a71f",
-  //   id
-  // );
-
-  // const c = await electionService.getVotesFromRepresentative(
-  //   "d79eeb99-9eb5-45f2-b5b6-42789214a71f"
-  // );
-
-  //   console.log(c);
-  //   console.log(choice);
-  // ;
 
   if (!representatives) {
     throw new Error("Something went wrong");
@@ -57,18 +41,6 @@ export async function closeElection(formData: FormData) {
     }
   }
 
-  //calculate winning choice
-
-  // get votes from userService votes table
-  // which option did representative choose
-  // get representatives that choose options
-  // add up the sum of votes per representative
-  // check biggest number and send as winning choice
-
-  console.log(optionOne);
-  console.log(optionTwo);
-  console.log(optionThree);
-
   let winningChoice = 0;
   const highestCount = Math.max(optionOne, optionThree, optionThree);
 
@@ -84,7 +56,9 @@ export async function closeElection(formData: FormData) {
     }
   }
 
-  await electionService.update(id, winningChoice);
+  const optionVotes = [optionOne, optionTwo, optionThree];
+
+  await electionService.update(id, winningChoice, optionVotes);
 
   revalidateTag("elections");
   redirect("/elections");

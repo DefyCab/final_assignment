@@ -1,4 +1,3 @@
-import { unique } from "drizzle-orm/mysql-core";
 import {
   pgTable,
   boolean,
@@ -7,6 +6,7 @@ import {
   integer,
   jsonb,
 } from "drizzle-orm/pg-core";
+import { ElectionChoice } from "../repository";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -24,12 +24,7 @@ export const votes = pgTable("votes", {
 export const election_choices = pgTable("election_choices", {
   id: uuid("id").primaryKey().defaultRandom(),
   user_id: uuid("user_id").unique().notNull(),
-  election_choices: jsonb("election_choices").notNull(),
+  election_choices: jsonb("election_choices")
+    .$type<ElectionChoice[]>()
+    .notNull(),
 });
-// users scehma
-
-// id: id of that user
-// name: user's name
-// email: user's email
-// representive: if the user is a representative
-// vote: which representative have the user give his vote

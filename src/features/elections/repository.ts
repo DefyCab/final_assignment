@@ -64,7 +64,11 @@ export function createRepository(db: Db) {
         console.log(error);
       }
     },
-    update: async (id: string, winningChoice: number) => {
+    update: async (
+      id: string,
+      winningChoice: number,
+      optionVotes: number[]
+    ) => {
       try {
         const election = await electionService.get(id);
 
@@ -79,6 +83,7 @@ export function createRepository(db: Db) {
           .set({
             status: false,
             winning_choice: winningChoice,
+            number_of_votes_per_option: optionVotes,
           })
           .where(eq(elections.id, id));
       } catch (error) {

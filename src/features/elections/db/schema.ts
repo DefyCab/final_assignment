@@ -17,8 +17,8 @@ export const elections = pgTable("elections", {
     .notNull()
     .default(sql`now()`),
   status: boolean().notNull(),
-  winning_choice: integer("winning_chocie"),
-  number_of_votes_per_option: integer("number_of_votes_per_option").$type<
+  winning_choice: integer("winning_choice"),
+  number_of_votes_per_option: jsonb("number_of_votes_per_option").$type<
     number[]
   >(),
 });
