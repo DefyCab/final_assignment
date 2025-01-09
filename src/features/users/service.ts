@@ -20,6 +20,9 @@ export function createService(db: Db) {
     getVotes: async () => {
       return await repository.getVotes();
     },
+    getVotesFromRepresentative: async (id: string) => {
+      return await repository.getVotesFromRepresentative(id);
+    },
     createVoteData: async (voteData: VoteData) => {
       return await repository.createVoteData(voteData);
     },

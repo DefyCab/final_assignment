@@ -17,27 +17,34 @@ export async function closeElection(formData: FormData) {
     id
   );
 
-  if (!representatives) {
-    throw new Error("Something went wrong");
-  }
+  const c = await electionService.getVotesFromRepresentative(
+    "d79eeb99-9eb5-45f2-b5b6-42789214a71f"
+  );
 
-  const one = [];
-  const two = [];
-  const three = [];
+  console.log(c);
+  console.log(choice);
+  
+  // if (!representatives) {
+  //   throw new Error("Something went wrong");
+  // }
 
-  for (let i = 0; i < representatives.length; i++) {
+  // let optionOne = 0;
+  // let optionTwo = 0;
+  // let optionThree = 0;
 
-    const repId = representatives[0].id
-    
-    const choice = await electionService.getChoiceOnElection(
-      representatives[i].id,
-      id
-    );
+  // for (let i = 0; i < representatives.length; i++) {
+  //   const repId = representatives[0].id;
 
-    if (choice === 1) {
-      const votes = await electionService.getVotesFromRepresentative()
-    } 
+  //   const choice = await electionService.getChoiceOnElection(
+  //     representatives[i].id,
+  //     id
+  //   );
 
+  //   if (choice === 1) {
+  //     const votes = await electionService.getVotesFromRepresentative(repId);
+  //     optionOne = optionOne + votes;
+  //   }
+  // }
   //calculate winning choice
 
   // get votes from userService votes table

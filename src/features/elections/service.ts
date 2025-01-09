@@ -31,6 +31,9 @@ export function createService(db: Db) {
     getVotes: async () => {
       return await userService.getVotes();
     },
+    getVotesFromRepresentative: async (id: string) => {
+      return await userService.getVotesFromRepresentative(id);
+    },
     getWinningChoice: async () => {
       return await userService.getWinningChoice();
     },

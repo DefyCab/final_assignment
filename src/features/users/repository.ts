@@ -107,6 +107,11 @@ export function createRepository(db: Db) {
         console.log(error);
       }
     },
+    getVotesFromRepresentative: async (id: string) => {
+      const data = await db.select().from(votes).where(eq(votes.user_id, id));
+
+      return data;
+    },
     createVoteData: async (voteData: VoteData) => {
       await db.insert(votes).values(voteData);
     },
@@ -131,12 +136,10 @@ export function createRepository(db: Db) {
       );
 
       const choices = electionChoices.find(
-        (choice) => choice.election_id === id
+        (choice: any) => choice.election_id === id
       );
 
-      const choice = choices.choice;
-
-      return choice;
+      return choices;
     },
   };
 }
