@@ -110,8 +110,6 @@ export async function Election(id: Id) {
                   : ""}
               </p>
             ))}
-
-            <p className="font-semibold">Total votes on Winning Choice</p>
           </div>
           <div className="flex justify-center">
             <form action={closeElection}>

@@ -30,5 +30,4 @@ export function NominateUserToRepresentative({ users }: Props) {
   );
 }
 
-
 // TODO: add to tables when nominated

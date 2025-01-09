@@ -14,7 +14,11 @@ export function createService(db: Db) {
     create: async (election: CreateElection) => {
       return await repository.create(election);
     },
-    update: async (id: string, winningChoice: number, optionVotes: number[]) => {
+    update: async (
+      id: string,
+      winningChoice: number,
+      optionVotes: number[]
+    ) => {
       return await repository.update(id, winningChoice, optionVotes);
     },
     getRepresentatives: async () => {
