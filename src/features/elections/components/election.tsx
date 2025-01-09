@@ -21,6 +21,19 @@ export async function Election(id: Id) {
 
   const sortedVotes = votes.sort((a, b) => a.user_id.localeCompare(b.user_id));
 
+  const sortedRepresentativesId = sortedRepresentatives.map((id) => id.id);
+
+  const sortedElectionChoices = [];
+
+  for (let i = 0; i < sortedRepresentativesId.length; i++) {
+    const optionVotedFor = await electionService.getChoiceOnElection(
+      sortedRepresentativesId[i],
+      id.id
+    );
+
+    sortedElectionChoices.push(optionVotedFor);
+  }
+
   return (
     <main className="mr-4 ml-4 mt-4 flex justify-center">
       <section className="w-full h-[calc(100vh-100px)] bg-base-300 mt-4 border-solid border-2 border-primary rounded ">
@@ -67,13 +80,9 @@ export async function Election(id: Id) {
             </div>
             <div className="w-40 h-80">
               <p className="font-semibold">Option voted for</p>
-              <p>Two</p>
-              <p>Three</p>
-              <p>One</p>
-              <p>Two</p>
-              <p>Two</p>
-              <p>Three</p>
-              <p>One</p>
+              {sortedElectionChoices.map((e, index) => (
+                <p key={index}>{e}</p>
+              ))}
             </div>
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
