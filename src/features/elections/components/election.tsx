@@ -45,9 +45,15 @@ export async function Election(id: Id) {
               )}
             </div>
             <div className="mr-2 text-right">
-              <p className="text-sm text-red-500">145</p>
-              <p className="text-sm text-green-500">1345</p>
-              <p className="text-sm text-red-500">398</p>
+              {election.map((e) => (
+                <div key={e.id}>
+                  {e.number_of_votes_per_option?.map((votes, index) => (
+                    <p key={index} className="text-sm">
+                      {votes}
+                    </p>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </article>
