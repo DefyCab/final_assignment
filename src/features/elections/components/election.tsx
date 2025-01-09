@@ -90,7 +90,9 @@ export async function Election(id: Id) {
             <p className="font-semibold">Winning choice</p>
             {election.map((e) => (
               <p className="text-red-700" key={e.id}>
-                {e.winning_choice !== null ? e.options[e.winning_choice] : ""}
+                {e.winning_choice !== null
+                  ? e.options[e.winning_choice - 1]
+                  : ""}
               </p>
             ))}
 

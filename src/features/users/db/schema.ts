@@ -1,3 +1,4 @@
+import { unique } from "drizzle-orm/mysql-core";
 import {
   pgTable,
   boolean,
@@ -22,7 +23,7 @@ export const votes = pgTable("votes", {
 
 export const election_choices = pgTable("election_choices", {
   id: uuid("id").primaryKey().defaultRandom(),
-  user_id: uuid("user_id").notNull(),
+  user_id: uuid("user_id").unique().notNull(),
   election_choices: jsonb("election_choices").notNull(),
 });
 // users scehma
