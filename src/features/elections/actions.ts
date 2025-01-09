@@ -12,7 +12,31 @@ export async function closeElection(formData: FormData) {
     "d79eeb99-9eb5-45f2-b5b6-42789214a71f"
   );
 
-  console.log(electionChoices);
+  const choice = await electionService.getChoiceOnElection(
+    "d79eeb99-9eb5-45f2-b5b6-42789214a71f",
+    id
+  );
+
+  if (!representatives) {
+    throw new Error("Something went wrong");
+  }
+
+  const one = [];
+  const two = [];
+  const three = [];
+
+  for (let i = 0; i < representatives.length; i++) {
+
+    const repId = representatives[0].id
+    
+    const choice = await electionService.getChoiceOnElection(
+      representatives[i].id,
+      id
+    );
+
+    if (choice === 1) {
+      const votes = await electionService.getVotesFromRepresentative()
+    } 
 
   //calculate winning choice
 
