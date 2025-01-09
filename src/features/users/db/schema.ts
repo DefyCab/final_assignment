@@ -17,7 +17,7 @@ export const users = pgTable("users", {
 export const votes = pgTable("votes", {
   id: uuid("id").primaryKey().defaultRandom(),
   user_id: uuid("user_id").unique(),
-  votes: integer("votes"),
+  votes: integer("votes").notNull(),
 });
 
 export const election_choices = pgTable("election_choices", {

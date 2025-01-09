@@ -110,7 +110,9 @@ export function createRepository(db: Db) {
     getVotesFromRepresentative: async (id: string) => {
       const data = await db.select().from(votes).where(eq(votes.user_id, id));
 
-      return data;
+      const representativesVotes = data.map((vote) => vote.votes);
+
+      return representativesVotes[0];
     },
     createVoteData: async (voteData: VoteData) => {
       await db.insert(votes).values(voteData);

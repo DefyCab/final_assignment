@@ -21,8 +21,9 @@ export async function closeElection(formData: FormData) {
     "d79eeb99-9eb5-45f2-b5b6-42789214a71f"
   );
 
-  console.log(c);
+  // console.log(c);
   console.log(choice);
+;
   
   // if (!representatives) {
   //   throw new Error("Something went wrong");
