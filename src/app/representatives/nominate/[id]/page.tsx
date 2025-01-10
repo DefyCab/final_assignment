@@ -1,4 +1,4 @@
-import { User } from "../../../../features/users";
+import { User } from "@/features/users";
 
 type Params = {
   params: Promise<{ id: string }>;
