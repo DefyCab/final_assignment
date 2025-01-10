@@ -1,4 +1,4 @@
-import { Db } from "./instance";
+import { Db, electionService } from "./instance";
 import { createRepository } from "./repository";
 import type { User } from "./types";
 import { z } from "zod";
@@ -95,6 +95,65 @@ export function createService(
     },
     getChoiceOnElection: async (user_id: string, id: string) => {
       return await getChoiceOnElection(user_id, id);
+    },
+    closeElection: async (election_id: string) => {
+      const representatives = await electionService.getRepresentatives();
+
+      if (!representatives) {
+        throw new Error("Something went wrong");
+      }
+
+      let optionOne = 0;
+      let optionTwo = 0;
+      let optionThree = 0;
+
+      for (let i = 0; i < representatives.length; i++) {
+        const userId = representatives[i].id;
+
+        const choice = await electionService.getChoiceOnElection(
+          representatives[i].id,
+          election_id
+        );
+
+        if (choice === 1) {
+          const votes = await electionService.getVotesFromRepresentative(
+            userId
+          );
+          optionOne = optionOne + votes;
+        }
+
+        if (choice === 2) {
+          const votes = await electionService.getVotesFromRepresentative(
+            userId
+          );
+          optionTwo = optionTwo + votes;
+        }
+
+        if (choice === 3) {
+          const votes = await electionService.getVotesFromRepresentative(
+            userId
+          );
+          optionThree = optionThree + votes;
+        }
+      }
+
+      let winningChoice = 0;
+      const highestCount = Math.max(optionOne, optionThree, optionThree);
+
+      for (let i = 0; i < 3; i++) {
+        if (highestCount === optionOne) {
+          winningChoice = 1;
+        }
+        if (highestCount === optionTwo) {
+          winningChoice = 2;
+        }
+        if (highestCount === optionThree) {
+          winningChoice = 3;
+        }
+      }
+
+      const optionVotes = [optionOne, optionTwo, optionThree];
+      return { winningChoice, optionVotes };
     },
   };
 }

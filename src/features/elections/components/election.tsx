@@ -1,5 +1,5 @@
 import { electionService } from "../instance";
-import { closeElection } from "../actions";
+import { closeElectionAction } from "../actions";
 import { Back } from "./back";
 
 export type Id = {
@@ -114,7 +114,7 @@ export async function Election(id: Id) {
             ))}
           </div>
           <div className="flex justify-center">
-            <form action={closeElection}>
+            <form action={closeElectionAction}>
               {election.map((e) =>
                 e.status ? (
                   <button

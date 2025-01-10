@@ -8,7 +8,7 @@ const getWinningChoice = async () => {
   return await userService.getWinningChoice();
 };
 const getAll = async () => {
-  await userService.getAll();
+  return await userService.getAll();
 };
 const getVotes = async () => {
   return await userService.getVotes();
