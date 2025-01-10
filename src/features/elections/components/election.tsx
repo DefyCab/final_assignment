@@ -15,13 +15,15 @@ export async function Election(id: Id) {
   if (!representatives) return <p>No representatives found</p>;
   if (!votes) return <p>No votes found</p>;
 
-  const sortedRepresentatives = representatives.sort((a, b) =>
+  const sortedRepresentatives = representatives.sort((a: any, b: any) =>
     a.id.localeCompare(b.id)
   );
 
-  const sortedVotes = votes.sort((a, b) => a.user_id.localeCompare(b.user_id));
+  const sortedVotes = votes.sort((a: any, b: any) =>
+    a.user_id.localeCompare(b.user_id)
+  );
 
-  const sortedRepresentativesId = sortedRepresentatives.map((id) => id.id);
+  const sortedRepresentativesId = sortedRepresentatives.map((id: Id) => id.id);
 
   const sortedElectionChoices = [];
 
@@ -75,7 +77,7 @@ export async function Election(id: Id) {
             <div className="w-40 h-80">
               <p className="font-semibold">Representatives</p>
               {sortedRepresentatives
-                .map((rep) => <p key={rep.id}>{rep.name}</p>)
+                .map((rep: any) => <p key={rep.id}>{rep.name}</p>)
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
@@ -87,7 +89,7 @@ export async function Election(id: Id) {
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
               {sortedVotes
-                .map((votes) => <p key={votes.user_id}>{votes.votes}</p>)
+                .map((votes: any) => <p key={votes.user_id}>{votes.votes}</p>)
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">

@@ -1,8 +1,8 @@
 import { Db } from "./instance";
 import { CreateElection, createRepository } from "./repository";
-import { userService } from "../users/instance";
-//  import every method not the instance
-export function createService(db: Db) {
+import type { User } from "./types";
+
+export function createService(db: Db, userService: any) {
   const repository = createRepository(db);
 
   return {
@@ -28,7 +28,7 @@ export function createService(db: Db) {
       if (!users) return;
 
       const representatives = users.filter(
-        (user) => user.representative === true
+        (user: User) => user.representative === true
       );
 
       return representatives;
