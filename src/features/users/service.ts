@@ -1,7 +1,7 @@
 import { Db } from "./instance";
 import { createRepository } from "./repository";
 import { z } from "zod";
-import { ElectionChoice, VoteData } from "./types";
+import { VoteData } from "./types";
 
 const usersSchema = z.object({
   id: z.string().uuid(),
