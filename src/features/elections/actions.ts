@@ -7,12 +7,10 @@ import { electionService } from "./instance";
 export async function closeElectionAction(formData: FormData) {
   const id = formData.get("id") as string;
 
-  const { winningChoice, optionVotes } = await electionService.closeElection(
+  await electionService.closeElection(
     id
   );
-
-  await electionService.update(id, winningChoice, optionVotes);
-
+ 
   revalidateTag("elections");
   redirect("/elections");
 }

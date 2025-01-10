@@ -103,6 +103,8 @@ export function createService(
         throw new Error("Something went wrong");
       }
 
+      console.log(representatives);
+      
       let optionOne = 0;
       let optionTwo = 0;
       let optionThree = 0;
@@ -120,6 +122,7 @@ export function createService(
             userId
           );
           optionOne = optionOne + votes;
+          console.log(optionOne);
         }
 
         if (choice === 2) {
@@ -127,6 +130,7 @@ export function createService(
             userId
           );
           optionTwo = optionTwo + votes;
+      console.log(optionTwo);
         }
 
         if (choice === 3) {
@@ -134,9 +138,11 @@ export function createService(
             userId
           );
           optionThree = optionThree + votes;
+          console.log(optionThree);
         }
       }
 
+      
       let winningChoice = 0;
       const highestCount = Math.max(optionOne, optionThree, optionThree);
 
@@ -153,7 +159,11 @@ export function createService(
       }
 
       const optionVotes = [optionOne, optionTwo, optionThree];
-      return { winningChoice, optionVotes };
+      return await electionService.update(
+        election_id,
+        winningChoice,
+        optionVotes
+      );
     },
   };
 }
