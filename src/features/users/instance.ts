@@ -1,4 +1,4 @@
-import { db } from "../../db/drizzle";
+import { db } from "@/db";
 
 import { createService } from "./service";
 

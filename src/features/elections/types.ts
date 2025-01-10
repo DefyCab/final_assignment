@@ -10,3 +10,8 @@ export type Votes = {
   votes: number;
   user_id: string;
 };
+
+export type ElectionChoice = {
+  choice: number;
+  election_id: string;
+};

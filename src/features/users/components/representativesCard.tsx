@@ -1,6 +1,6 @@
 "use client";
 
-import type { Representatives } from "../repository";
+import type { Representatives } from "../service";
 import { NominateRepresentative } from "./nominate-button";
 import { VoteRepresentative } from "./vote-button";
 

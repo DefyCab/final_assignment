@@ -1,4 +1,4 @@
-import { ElectionChoice } from "../users/types";
+import { ElectionChoice } from "./types";
 import { Db, electionService } from "./instance";
 import { createRepository } from "./repository";
 import type { User } from "./types";

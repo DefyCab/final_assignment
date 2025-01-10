@@ -9,13 +9,11 @@ export async function Users() {
   }
 
   return (
-    <>
-      <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
-        <h1 className="font-bold text-center text-2xl mt-1">
-          List of Representatives
-        </h1>
-        <RepresentativeCard representatives={representatives} />
-      </main>
-    </>
+    <main className="mx-auto flex flex-col h-[calc(100vh-118px)]">
+      <h1 className="font-bold text-center text-2xl mt-1">
+        List of Representatives
+      </h1>
+      <RepresentativeCard representatives={representatives} />
+    </main>
   );
 }
