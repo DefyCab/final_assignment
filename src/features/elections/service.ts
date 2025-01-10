@@ -45,7 +45,16 @@ export function createService(db: Db, userService: any) {
       return await repository.get(id);
     },
     create: async (election: CreateElection) => {
-      return await repository.create(election);
+      try {
+        const electionToValidate = createElectionsSchema.safeParse(election);
+
+        if (!electionToValidate.success) {
+          console.log(electionToValidate.error.message);
+        }
+        return await repository.create(election);
+      } catch (error) {
+        console.log(error);
+      }
     },
     update: async (
       id: string,

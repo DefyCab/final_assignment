@@ -1,6 +1,7 @@
 import { Db, electionService } from "./instance";
 import { elections } from "./db";
 import { desc, eq } from "drizzle-orm";
+import { CreateElection } from "./service";
 
 export function createRepository(db: Db) {
   return {
@@ -18,17 +19,7 @@ export function createRepository(db: Db) {
       }
     },
     create: async (election: CreateElection) => {
-      try {
-        const electionToValidate = createElectionsSchema.safeParse(election);
-
-        if (!electionToValidate.success) {
-          console.log(electionToValidate.error.message);
-        }
-
-        return await db.insert(elections).values(election);
-      } catch (error) {
-        console.log(error);
-      }
+      return await db.insert(elections).values(election);
     },
     update: async (
       id: string,
