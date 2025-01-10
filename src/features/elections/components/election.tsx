@@ -1,7 +1,7 @@
 import { electionService } from "../instance";
 import { closeElectionAction } from "../actions";
 import { Back } from "./back";
-import { User } from "../types";
+import type { User, Votes } from "../types";
 
 export type Id = {
   id: string;
@@ -20,19 +20,8 @@ export async function Election(id: Id) {
     a.id.localeCompare(b.id)
   );
 
-  const sortedVotes = votes.sort(
-    (
-      a: {
-        id: string;
-        votes: number;
-        user_id: string;
-      },
-      b: {
-        id: string;
-        votes: number;
-        user_id: string;
-      }
-    ) => a.user_id.localeCompare(b.user_id)
+  const sortedVotes = votes.sort((a: Votes, b: Votes) =>
+    a.user_id.localeCompare(b.user_id)
   );
 
   const sortedRepresentativesId = sortedRepresentatives.map((id: Id) => id.id);
