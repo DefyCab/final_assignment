@@ -1,6 +1,7 @@
 import { electionService } from "../instance";
 import { closeElectionAction } from "../actions";
 import { Back } from "./back";
+import { User } from "../types";
 
 export type Id = {
   id: string;
@@ -15,12 +16,23 @@ export async function Election(id: Id) {
   if (!representatives) return <p>No representatives found</p>;
   if (!votes) return <p>No votes found</p>;
 
-  const sortedRepresentatives = representatives.sort((a: any, b: any) =>
+  const sortedRepresentatives = representatives.sort((a: User, b: User) =>
     a.id.localeCompare(b.id)
   );
 
-  const sortedVotes = votes.sort((a: any, b: any) =>
-    a.user_id.localeCompare(b.user_id)
+  const sortedVotes = votes.sort(
+    (
+      a: {
+        id: string;
+        votes: number;
+        user_id: string;
+      },
+      b: {
+        id: string;
+        votes: number;
+        user_id: string;
+      }
+    ) => a.user_id.localeCompare(b.user_id)
   );
 
   const sortedRepresentativesId = sortedRepresentatives.map((id: Id) => id.id);
@@ -77,7 +89,14 @@ export async function Election(id: Id) {
             <div className="w-40 h-80">
               <p className="font-semibold">Representatives</p>
               {sortedRepresentatives
-                .map((rep: any) => <p key={rep.id}>{rep.name}</p>)
+                .map(
+                  (rep: {
+                    name: string;
+                    email: string;
+                    representative: boolean;
+                    id: string;
+                  }) => <p key={rep.id}>{rep.name}</p>
+                )
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">
@@ -89,7 +108,11 @@ export async function Election(id: Id) {
             <div className="w-52 h-80">
               <p className="font-semibold">Votes per representative</p>
               {sortedVotes
-                .map((votes: any) => <p key={votes.user_id}>{votes.votes}</p>)
+                .map(
+                  (votes: { id: string; votes: number; user_id: string }) => (
+                    <p key={votes.user_id}>{votes.votes}</p>
+                  )
+                )
                 .slice(0, 7)}
             </div>
             <div className="w-40 h-80">

@@ -1,5 +1,5 @@
 "use client";
-import type { Election } from "../repository";
+import type { Election } from "../service";
 import { useRouter } from "next/navigation";
 
 type Props = {

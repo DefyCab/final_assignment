@@ -1,3 +1,4 @@
+import { ElectionChoice } from "../users/types";
 import { Db, electionService } from "./instance";
 import { createRepository } from "./repository";
 import type { User } from "./types";
@@ -22,12 +23,27 @@ export type CreateElection = z.infer<typeof createElectionsSchema>;
 
 export function createService(
   db: Db,
-  getAll: any,
-  getVotes: any,
-  getVotesFromRepresentative: any,
-  getWinningChoice: any,
-  getChoicesOnAllElections: any,
-  getChoiceOnElection: any
+  getAll: () => Promise<
+    | {
+        name: string;
+        email: string;
+        representative: boolean;
+        id: string;
+      }[]
+    | undefined
+  >,
+  getVotes: () => Promise<
+    | {
+        id: string;
+        votes: number;
+        user_id: string;
+      }[]
+    | undefined
+  >,
+  getVotesFromRepresentative: (id: string) => Promise<number>,
+  getWinningChoice: () => Promise<void>,
+  getChoicesOnAllElections: (id: string) => Promise<ElectionChoice[]>,
+  getChoiceOnElection: (user_id: string, id: string) => Promise<number>
 ) {
   const repository = createRepository(db);
   return {
@@ -104,7 +120,7 @@ export function createService(
       }
 
       console.log(representatives);
-      
+
       let optionOne = 0;
       let optionTwo = 0;
       let optionThree = 0;
@@ -130,7 +146,7 @@ export function createService(
             userId
           );
           optionTwo = optionTwo + votes;
-      console.log(optionTwo);
+          console.log(optionTwo);
         }
 
         if (choice === 3) {
@@ -142,7 +158,6 @@ export function createService(
         }
       }
 
-      
       let winningChoice = 0;
       const highestCount = Math.max(optionOne, optionThree, optionThree);
 

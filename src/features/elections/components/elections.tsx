@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { ElectionsView } from "./elections-view";
-import type { Election } from "../repository";
+import type { Election } from "../service";
 
 type Props = {
   elections: Election[];
