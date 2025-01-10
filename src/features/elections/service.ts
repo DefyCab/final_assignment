@@ -24,7 +24,7 @@ export function createService(db: Db, userService: any) {
   const repository = createRepository(db);
   return {
     getAll: async () => {
-      const data = repository.getAll();
+      const data =  await repository.getAll();
       const electionsArray = z.array(electionsSchema);
       try {
         const electionsToValidate = electionsArray.safeParse(data);
@@ -39,7 +39,6 @@ export function createService(db: Db, userService: any) {
       } catch (error) {
         console.log(error);
       }
-      return await repository.getAll();
     },
     get: async (id: string) => {
       return await repository.get(id);
