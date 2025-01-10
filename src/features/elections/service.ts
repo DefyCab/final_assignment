@@ -20,11 +20,19 @@ const createElectionsSchema = z.object({
 export type Election = z.infer<typeof electionsSchema>;
 export type CreateElection = z.infer<typeof createElectionsSchema>;
 
-export function createService(db: Db, userService: any) {
+export function createService(
+  db: Db,
+  getAll,
+  getVotes,
+  getVotesFromRepresentative,
+  getWinningChoice,
+  getChoicesOnAllElections,
+  getChoiceOnElection
+) {
   const repository = createRepository(db);
   return {
     getAll: async () => {
-      const data =  await repository.getAll();
+      const data = await repository.getAll();
       const electionsArray = z.array(electionsSchema);
       try {
         const electionsToValidate = electionsArray.safeParse(data);
@@ -63,7 +71,7 @@ export function createService(db: Db, userService: any) {
       return await repository.update(id, winningChoice, optionVotes);
     },
     getRepresentatives: async () => {
-      const users = await userService.getAll();
+      const users = await getAll();
 
       if (!users) return;
 
@@ -74,19 +82,19 @@ export function createService(db: Db, userService: any) {
       return representatives;
     },
     getVotes: async () => {
-      return await userService.getVotes();
+      return await getVotes();
     },
     getVotesFromRepresentative: async (id: string) => {
-      return await userService.getVotesFromRepresentative(id);
+      return await getVotesFromRepresentative(id);
     },
     getWinningChoice: async () => {
-      return await userService.getWinningChoice();
+      return await getWinningChoice();
     },
     getChoicesOnAllElections: async (id: string) => {
-      return await userService.getChoicesOnAllElections(id);
+      return await getChoicesOnAllElections(id);
     },
     getChoiceOnElection: async (user_id: string, id: string) => {
-      return await userService.getChoiceOnElection(user_id, id);
+      return await getChoiceOnElection(user_id, id);
     },
   };
 }
