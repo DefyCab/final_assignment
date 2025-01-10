@@ -6,7 +6,7 @@ import {
   integer,
   jsonb,
 } from "drizzle-orm/pg-core";
-import { ElectionChoice } from "../repository";
+import { ElectionChoice } from "../types";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),

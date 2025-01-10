@@ -53,10 +53,34 @@ export function createService(db: Db) {
       return await repository.update(id);
     },
     create: async (user: CreateUser) => {
-      return await repository.create(user);
+      try {
+        const userToValidate = createUserSchema.safeParse(user);
+
+        if (!userToValidate.success) {
+          return console.log(userToValidate.error.message);
+        }
+
+        return await repository.create(user);
+      } catch (error) {
+        console.log(error);
+      }
     },
     getVotes: async () => {
-      return await repository.getVotes();
+      try {
+        const voteData = await repository.getVotes();
+
+        const voteDataArray = z.array(voteDataSchema);
+
+        const voteDataToValidate = voteDataArray.safeParse(voteData);
+
+        if (!voteDataToValidate.success) {
+          console.log(voteDataToValidate.error.message);
+        }
+
+        return voteDataToValidate.data;
+      } catch (error) {
+        console.log(error);
+      }
     },
     getVotesFromRepresentative: async (id: string) => {
       return await repository.getVotesFromRepresentative(id);

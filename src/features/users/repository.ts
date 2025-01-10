@@ -2,6 +2,7 @@ import { users, votes, election_choices } from "./db";
 import { userService } from "./instance";
 import { eq } from "drizzle-orm";
 import type { Db } from "./instance";
+import type { VoteData } from "./types";
 import type { CreateUser } from "./service";
 
 export function createRepository(db: Db) {
@@ -12,7 +13,6 @@ export function createRepository(db: Db) {
     get: async (id: string) => {
       try {
         const result = await db.select().from(users).where(eq(users.id, id));
-
         return result;
       } catch (error) {
         console.log(error);
@@ -34,34 +34,10 @@ export function createRepository(db: Db) {
       }
     },
     create: async (user: CreateUser) => {
-      try {
-        const userToValidate = createUserSchema.safeParse(user);
-
-        if (!userToValidate.success) {
-          return console.log(userToValidate.error.message);
-        }
-
-        await db.insert(users).values(user);
-      } catch (error) {
-        console.log(error);
-      }
+      await db.insert(users).values(user);
     },
     getVotes: async () => {
-      try {
-        const voteData = await db.select().from(votes);
-
-        const voteDataArray = z.array(voteDataSchema);
-
-        const voteDataToValidate = voteDataArray.safeParse(voteData);
-
-        if (!voteDataToValidate.success) {
-          console.log(voteDataToValidate.error.message);
-        }
-
-        return voteDataToValidate.data;
-      } catch (error) {
-        console.log(error);
-      }
+      return await db.select().from(votes);
     },
     getVotesFromRepresentative: async (id: string) => {
       const data = await db.select().from(votes).where(eq(votes.user_id, id));
