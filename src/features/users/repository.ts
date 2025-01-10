@@ -1,57 +1,13 @@
 import { users, votes, election_choices } from "./db";
 import { userService } from "./instance";
-import type { Db } from "./instance";
-import { z } from "zod";
 import { eq } from "drizzle-orm";
-
-const usersSchema = z.object({
-  id: z.string().uuid(),
-  name: z.string(),
-  email: z.string().email(),
-  representative: z.boolean(),
-});
-
-const createUserSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  representative: z.boolean(),
-});
-
-const voteDataSchema = z.object({
-  id: z.string(),
-  user_id: z.string().uuid(),
-  votes: z.number(),
-});
-
-export type Representatives = z.infer<typeof usersSchema>;
-export type CreateUser = z.infer<typeof createUserSchema>;
-export type VoteData = {
-  user_id: string;
-  votes: number;
-};
-export type ElectionChoice = {
-  choice: number;
-  election_id: string;
-};
+import type { Db } from "./instance";
+import type { CreateUser } from "./service";
 
 export function createRepository(db: Db) {
   return {
     getAll: async () => {
-      try {
-        const data = await db.select().from(users);
-
-        const usersArray = z.array(usersSchema);
-
-        const usersToValidate = usersArray.safeParse(data);
-
-        if (!usersToValidate.success) {
-          console.log(usersToValidate.error.message);
-        }
-
-        return usersToValidate.data;
-      } catch (error) {
-        console.log(error);
-      }
+      return await db.select().from(users);
     },
     get: async (id: string) => {
       try {

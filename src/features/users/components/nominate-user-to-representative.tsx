@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import type { Representatives } from "../repository";
+import type { Representatives } from "../service";
 
 type Props = {
   users: Representatives[];

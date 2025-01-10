@@ -22,12 +22,12 @@ export type CreateElection = z.infer<typeof createElectionsSchema>;
 
 export function createService(
   db: Db,
-  getAll,
-  getVotes,
-  getVotesFromRepresentative,
-  getWinningChoice,
-  getChoicesOnAllElections,
-  getChoiceOnElection
+  getAll: any,
+  getVotes: any,
+  getVotesFromRepresentative: any,
+  getWinningChoice: any,
+  getChoicesOnAllElections: any,
+  getChoiceOnElection: any
 ) {
   const repository = createRepository(db);
   return {
