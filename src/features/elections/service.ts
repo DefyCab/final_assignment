@@ -1,6 +1,7 @@
 import { Db } from "./instance";
 import { CreateElection, createRepository } from "./repository";
 import { userService } from "../users/instance";
+//  import every method not the instance
 export function createService(db: Db) {
   const repository = createRepository(db);
 
