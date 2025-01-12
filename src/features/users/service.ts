@@ -30,21 +30,15 @@ export function createService(db: Db) {
 
   return {
     getAll: async () => {
-      try {
-        const data = await repository.getAll();
+      const data = await repository.getAll();
+      const usersArray = z.array(usersSchema);
+      const usersToValidate = usersArray.safeParse(data);
 
-        const usersArray = z.array(usersSchema);
-
-        const usersToValidate = usersArray.safeParse(data);
-
-        if (!usersToValidate.success) {
-          console.log(usersToValidate.error.message);
-        }
-
-        return usersToValidate.data;
-      } catch (error) {
-        console.log(error);
+      if (!usersToValidate.success) {
+        throw new Error(usersToValidate.error.message);
       }
+
+      return usersToValidate.data;
     },
     get: async (id: string) => {
       return await repository.get(id);
@@ -53,34 +47,24 @@ export function createService(db: Db) {
       return await repository.update(id);
     },
     create: async (user: CreateUser) => {
-      try {
-        const userToValidate = createUserSchema.safeParse(user);
+      const userToValidate = createUserSchema.safeParse(user);
 
-        if (!userToValidate.success) {
-          return console.log(userToValidate.error.message);
-        }
-
-        return await repository.create(user);
-      } catch (error) {
-        console.log(error);
+      if (!userToValidate.success) {
+        throw new Error(userToValidate.error.message);
       }
+
+      return await repository.create(user);
     },
     getVotes: async () => {
-      try {
-        const voteData = await repository.getVotes();
+      const votes = await repository.getVotes();
+      const votesArray = z.array(voteDataSchema);
+      const voteDataToValidate = votesArray.safeParse(votes);
 
-        const voteDataArray = z.array(voteDataSchema);
-
-        const voteDataToValidate = voteDataArray.safeParse(voteData);
-
-        if (!voteDataToValidate.success) {
-          console.log(voteDataToValidate.error.message);
-        }
-
-        return voteDataToValidate.data;
-      } catch (error) {
-        console.log(error);
+      if (!voteDataToValidate.success) {
+        throw new Error(voteDataToValidate.error.message);
       }
+
+      return voteDataToValidate.data;
     },
     getVotesFromRepresentative: async (id: string) => {
       return await repository.getVotesFromRepresentative(id);
