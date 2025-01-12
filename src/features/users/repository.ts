@@ -19,19 +19,24 @@ export function createRepository(db: Db) {
       }
     },
     update: async (id: string) => {
-      try {
-        const user = await userService.get(id);
-        if (!user) return console.log("User not found");
-        if (!user[0].representative === false) return;
-        return await db
-          .update(users)
-          .set({
-            ...(!user[0].representative && { representative: true }),
-          })
-          .where(eq(users.id, id));
-      } catch (error) {
-        console.log(error);
-      }
+      const user = await userService.get(id);
+      if (!user) return console.log("User not found");
+      if (!user[0].representative === false) return;
+      await db
+        .update(users)
+        .set({
+          ...(!user[0].representative && { representative: true }),
+        })
+        .where(eq(users.id, id));
+
+      await db.insert(election_choices).values({
+        user_id: user[0].id,
+        election_choices: [],
+      });
+      await db.insert(votes).values({
+        user_id: user[0].id,
+        votes: 0,
+      });
     },
     create: async (user: CreateUser) => {
       await db.insert(users).values(user);
@@ -80,7 +85,7 @@ export function createRepository(db: Db) {
       );
 
       if (!choice) {
-        throw new Error("Error reading database");
+        return 0;
       }
 
       return choice.choice;
