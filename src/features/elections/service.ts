@@ -50,34 +50,27 @@ export function createService(
     getAll: async () => {
       const data = await repository.getAll();
       const electionsArray = z.array(electionsSchema);
-      try {
-        const electionsToValidate = electionsArray.safeParse(data);
 
-        if (!electionsToValidate.success) {
-          console.log(electionsToValidate.error.message);
-        }
-        return {
-          data: electionsToValidate.data,
-          tags: ["elections"],
-        };
-      } catch (error) {
-        console.log(error);
+      const electionsToValidate = electionsArray.safeParse(data);
+
+      if (!electionsToValidate.success) {
+        throw new Error(electionsToValidate.error.message);
       }
+      return {
+        data: electionsToValidate.data,
+        tags: ["elections"],
+      };
     },
     get: async (id: string) => {
       return await repository.get(id);
     },
     create: async (election: CreateElection) => {
-      try {
-        const electionToValidate = createElectionsSchema.safeParse(election);
+      const electionToValidate = createElectionsSchema.safeParse(election);
 
-        if (!electionToValidate.success) {
-          console.log(electionToValidate.error.message);
-        }
-        return await repository.create(election);
-      } catch (error) {
-        console.log(error);
+      if (!electionToValidate.success) {
+        throw new Error(electionToValidate.error.message);
       }
+      return await repository.create(election);
     },
     update: async (
       id: string,
@@ -119,8 +112,6 @@ export function createService(
         throw new Error("Something went wrong");
       }
 
-      console.log(representatives);
-
       let optionOne = 0;
       let optionTwo = 0;
       let optionThree = 0;
@@ -138,7 +129,6 @@ export function createService(
             userId
           );
           optionOne = optionOne + votes;
-          console.log(optionOne);
         }
 
         if (choice === 2) {
@@ -146,7 +136,6 @@ export function createService(
             userId
           );
           optionTwo = optionTwo + votes;
-          console.log(optionTwo);
         }
 
         if (choice === 3) {
@@ -154,7 +143,6 @@ export function createService(
             userId
           );
           optionThree = optionThree + votes;
-          console.log(optionThree);
         }
       }
 
